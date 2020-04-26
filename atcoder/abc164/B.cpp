@@ -173,16 +173,46 @@ template<typename T> T pow(T a,T b, ll m){T ans=1; while(b>0){ if(b%2==1) ans=(a
  
 void solve()
 {
+        vector<pair<ll,ll> > v;
         ll a,b,c,d;
         cin>>a>>b>>c>>d;
-        ll x = (c+b-1)/b;
-        ll y = (a+d-1)/d;
-        if(x<=y){
-                cout<<"Yes"<<endl;
+        v.pb({a,b});
+        v.pb({c,d});
+        ll f=0;
+        ll flag=0;
+        //cout<<v[0].ff << " "<<v[1].ff<<endl;
+        while(v[0].ff >0 && v[1].ff >0)
+        {
+
+                if(f==0)
+                {
+                        v[1].ff = v[1].ff - v[0].ss;
+                        f=1;
+                }
+                else if(f==1)
+                {
+                        v[0].ff = v[0].ff - v[1].ss;
+                        f=0;
+                }
+
+                if(v[1].ff <=0)
+                {
+                        flag=1;
+                        break;
+                }
+                if(v[0].ff <=0)
+                {
+                        break;
+                }
+                //cout<<v[0].ff << " "<<v[1].ff<<endl;
+        }
+        if(flag==0)
+        {
+                cout<<"No"<<endl;
         }
         else
         {
-                cout<<"No"<<endl;
+                cout<<"Yes"<<endl;
         }
 
 
