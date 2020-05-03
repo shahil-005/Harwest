@@ -175,7 +175,7 @@ void solve()
         ll n;
         cin>>n;
         vector<pair<ll,ll> > v;
-        fe(i,-120,120)
+        fe(i,-130,130)
         {
                 ll x = power(i,5);
                 v.pb({i,x});
