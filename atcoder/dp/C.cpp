@@ -176,9 +176,13 @@ void solve()
 {
         ll n;
         cin>>n;
+        ll a,b,c;
+        cin>>a>>b>>c;
         ll dp[n+1][3];
-        dp[0][0]=dp[0][1]=dp[0][2]=0;
-        fe(i,1,n)
+        dp[1][0]=max(b,c);
+        dp[1][1]=max(c,a);
+        dp[1][2]=max(a,b);
+        fe(i,2,n)
         {
                 ll a,b,c;
                 cin>>a>>b>>c;
@@ -186,7 +190,12 @@ void solve()
                 dp[i][1]=b+ max(dp[i-1][2],dp[i-1][0]);
                 dp[i][2]=c+ max(dp[i-1][0],dp[i-1][1]);
         }
-        cout<<Max(dp[n][0],dp[n][1],dp[n][2])<<endl;
+        cout<<Max(dp[n][0],dp[n][1],dp[n][2]);
+        /*
+        fe(i,1,n)
+        {
+                cout<<dp[i][0]<<" "<<dp[i][1]<<" "<<dp[i][2]<<endl;
+        }*/
 
 
     
@@ -222,10 +231,12 @@ int main ()
     cout.tie(0);
 
 
+
+
     TC(t)
     {
         solve();
     }
-
+ 
     return 0;
 }
