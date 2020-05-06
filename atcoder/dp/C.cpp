@@ -1,125 +1,231 @@
-
-// Problem : C - Vacation
-// Contest : AtCoder - Educational DP Contest
-// URL : https://atcoder.jp/contests/dp/tasks/dp_c
-// Memory Limit : 1024 MB
-// Time Limit : 2000 ms
-// Powered by CP Editor (https://github.com/cpeditor/cpeditor)
-
 #include <bits/stdc++.h>
+#include <climits>
 using namespace std;
-#pragma GCC optimize("-Ofast")
-//#pragma GCC optimize("trapv")
-//#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
-//#pragma GCC optimize("-O2")
-//#pragma GCC target("AVX")
-#define endl                    '\n'
-#define rep()                   for(LL i = 0 ; i < n ; i++)
-#define f(i,s,n)                for(LL i = s ; i < n ; i++)
-#define fe(i,s,n)               for(LL i = s ; i <= n ; i++)
-#define rfe(i,s,n)              for(LL i = s ; i >= n ; i--)
-#define auto(m)                 for(auto &it:m)
-#define f2(it,v)                for(it = v.begin(); it != v.end(); ++it)
-#define fori(it, x)             for (__typeof((x).begin()) it = (x).begin(); it != (x).end(); it++)
-#define ip(n,a)                 LL n;cin>>n;LL a[n];rep(){cin>>a[i];}
-#define op(n,a)                 f(i,0,n){cout<<a[i]<<" ";}cout<<endl;
-#define i2p(n,k,a)              LL n,k;cin>>n>>k;LL a[n];rep{cin>>a[i];}
-#define TCs(x)                  LL x; cin>>x; while(x--)
-#define TC(x)                   LL x=1; while(x--)
-#define mp                      make_pair
-#define pb                      push_back
-#define ff                      first
-#define ss                      second
-#define all(v)                  v.begin(), v.end()
-#define mem(a,x)                memset(a,x,sizeof(a))
-#define Max(x,y,z)              max(x,max(y,z))
-#define Min(x,y,z)              min(x,min(y,z))
-#define fastIO                  ios_base::sync_with_stdio(false);cin.tie(NULL);
-#define ps(x)                   std::cout << std::fixed; std::cout << std::setprecision(x);
-#define clz(a)                  __builtin_clz(a) // count leading zeroes (geeksforgeeks.org/builtin-functions-gcc-compiler/)
-#define ctz(a)                  __builtin_ctz(a) // count trailing zeroes
-#define popc(a)                 __builtin_popcount(a) // count set bits (for ints only diff for ll)
-#define GCD(A,B)                __gcd(A,B)
-#define d1(x)                   cout<<#x<<": "<<x<<endl
-#define d2(x, y)                cout<<#x<<": "<<x<<" | "<<#y<<": "<<y<<endl
-#define d3(x, y, z)             cout<<#x<<":" <<x<<" | "<<#y<<": "<<y<<" | "<<#z<<": "<<z<<endl
-#define d4(a, b, c, d)          cout<<#a<<": "<<a<<" | "<<#b<<": "<<b<<" | "<<#c<<": "<<c<<" | "<<#d<<": "<<d<<endl
-#define d5(a, b, c, d, e)       cout<<#a<<": "<<a<<" | "<<#b<<": "<<b<<" | "<<#c<<": "<<c<<" | "<<#d<<": "<<d<<" | "<<#e<< ": "<<e<<endl
-#define d6(a, b, c, d, e, f)    cout<<#a<<": "<<a<<" | "<<#b<<": "<<b<<" | "<<#c<<": "<<c<<" | "<<#d<<": "<<d<<" | "<<#e<< ": "<<e<<" | "<<#f<<": "<<f<<endl
-#define c1(a);                  LL a;cin>>a;
-#define c2(a,b);                LL a,b;cin>>a>>b;
-#define c3(a,b,c);              LL a,b,c;cin>>a>>b>>c;
-#define c4(a,b,c,d);            LL a,b,c,d;cin>>a>>b>>c>>d;
-#define c5(a,b,c,d,e);          LL a,b,c,d,e;cin>>a>>b>>c>>d>>e;
-#define c6(a,b,c,d,e,f);        LL a,b,c,d,e,f;cin>>a>>b>>c>>d>>e>>f;
-#define c(a,n);                 LL a[n];f(i,0,n){cin>>a[i];}
-#define ce(a,n);                LL a[n+1];fe(i,1,n){cin>>a[i];}
-#define IMIN                    INT_MIN
-#define IMAX                    INT_MAX
+
+#define endl        '\n'
+//#define IOS       ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define c0(x)       cout<<(x)<<" "
+#define c1(x)       cout<<(x)<<endl
+#define rep         for(ll i = 0 ; i < n ; i++)
+#define f(i,s,n)    for(ll i = s ; i < n ; i++)
+#define fe(i,s,n)   for(ll i = s ; i <= n ; i++)
+#define rfe(i,s,n)  for(ll i = s ; i >= n ; i--)
+#define TCs(x)      ll x; cin>>x; while(x--)
+#define TC(x)       ll x=1; while(x--)
+#define f2(it,v)    for(it = v.begin(); it != v.end(); ++it)
+#define fori(it, x) for (__typeof((x).begin()) it = (x).begin(); it != (x).end(); it++)
+#define auto(m)     for(auto &it:m)
+#define ip(n,a)     ll n;cin>>n;ll a[n];rep{cin>>a[i];}
+#define ip2(n,a,b)  ll n;cin>>n;ll a[n];ll b[n];rep{cin>>a[i];} rep{cin>>b[i];}
+//#define ip(n,a)   ll n;cin>>n;ll a[n];rep{cin>>a[i];}
+#define op(n,a)     f(i,0,n){cout<<a[i]<<" ";}
+#define i2p(n,k,a)  ll n,k;cin>>n>>k;ll a[n];rep{cin>>a[i];}
+//#define ll        long long
+//#define ld        long double
+//#define vl        vector<ll>
+#define mll         map<ll, ll>
+#define mcl         map<char, ll>
+#define msl         map<string, ll>
+#define mp          make_pair
+#define pii         pair<ll, ll>
+#define pb          push_back
+#define ff          first
+#define ss          second
+#define all(v)      v.begin(), v.end()
+#define vsort(v)    sort(all(v))
+#define vrsort(v)   reverse(all(v))
+#define Max(x,y,z)  max(x,max(y,z))
+#define Min(x,y,z)  min(x,min(y,z))
+//#define F           first
+//#define S           second
+//#define ps(x,y)     fixed<<setprecision(y)<<x
+//#define ps(x)       std::cout << std::fixed; std::cout << std::setprecision(x);
+#define clz(a)      __builtin_clz(a) // count leading zeroes (geeksforgeeks.org/builtin-functions-gcc-compiler/)
+#define ctz(a)      __builtin_ctz(a) // count trailing zeroes
+//#define ctz(a)      __builtin_ctzll(a)
+#define popc(a)     __builtin_popcount(a) // count set bits (for ints only diff for ll)
+#define GCD(A,B)    __gcd(A,B)
+//#define LCM(A,B)    boost::math::lcm(A,B)
+//#define COUNT(v,x)    count(all(v),x)
+//#define COUNT(v,x)    count(all(s),'x')
 
 //Typedefs:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-typedef string                  S;
-typedef long long               LL;
-typedef long double             LD;
-typedef unsigned long long      ULL;
-typedef vector<long long>       VL;
-typedef vector<VL>              VVL;
-typedef vector<string>          VS;
-typedef vector<char>            VC;
-typedef pair<LL,LL>             PLL;
-typedef pair<string,LL>         PSL;
-typedef pair<LL,string>         PLS;
-typedef pair<char,LL>           PCL;
-typedef pair<LL,char>           PLC;
-typedef pair<string,string>     PSS;
-typedef pair<char,char>         PCC;
-typedef vector<PLL>             VPLL;
-typedef vector<PSL>             VPSL;
-typedef vector<PLS>             VPLS;
-typedef vector<PCL>             VPCL;
-typedef vector<PLC>             VPLC;
-typedef vector<PSS>             VPSS;
-typedef vector<PCC>             VPCC;
-typedef map<LL,LL>              MLL;
-typedef map<string,LL>          MSL;
-typedef map<char,LL>            MCL;
-typedef map<char,char>          MCC;
-typedef set<LL>                 SL;
-typedef set<string>             SS;
-typedef set<char>               SC;
+typedef long long ll;
+typedef long double ld;
+//typedef pair<int,int> pii;
+typedef pair<long long,long long> pll;
+typedef pair<string,string> pss;
+typedef vector<int> vi;
+typedef vector<long long> vl;
+typedef pair<ll, ll> pairs;
+//typedef vector<pair<ll, pair<ll, ll>>> vppl;
 
-int power(LL x,LL y)
+const int N = 1e5 + 5;
+const long long MOD=(long long)(1e9+7);
+const long long INF=(long long)(1e9+5);
+const long long INIT=(long long)(1e6+1);
+//Functions:----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+inline string IntToString(ll a)
+{
+    char x[100];
+    sprintf(x, "%lld", a);
+    string s = x;
+    return s;
+}
+//....................................................................................//
+inline ll StringToInt(string a)
+{
+    char x[100];
+    ll res;
+    strcpy(x, a.c_str());
+    sscanf(x, "%lld", &res);
+    return res;
+}
+//....................................................................................//
+inline string GetString(void)
+{
+    char x[1000005];
+    scanf("%s", x);
+    string s = x;
+    return s;
+}
+//....................................................................................//
+inline string uppercase(string s)
+{
+    int n = s.size();
+    f(i,0, n)
+    if (s[i] >= 'a' && s[i] <= 'z')
+    s[i] = s[i] - 'a' + 'A';
+    return s;
+}
+//....................................................................................//
+inline string lowercase(string s)
+{
+    int n = s.size();
+    f(i,0,n)
+    if (s[i] >= 'A' && s[i] <= 'Z')
+    s[i] = s[i] - 'A' + 'a';
+    return s;
+}
+//....................................................................................//
+inline void OPEN(string s)
+{
+#ifndef TESTING
+    freopen((s + ".in").c_str(), "r", stdin);
+    freopen((s + ".out").c_str(), "w", stdout);
+#endif
+}
+//....................................................................................//
+
+template<typename T, typename U>            // Same as max_val = max (max_val, val)
+static inline void amin(T &x, U y)          // Same as min_val = min (min_val,val)
+{
+    if (y < x)                              //maximum = amax(max_val, val);
+    x = y;                              //minimum = amin (min_val, val);
+}
+//....................................................................................//
+template<typename T, typename U>
+static inline void amax(T &x, U y)
+{
+    if (x < y)
+    x = y;
+}
+//....................................................................................//
+ll power(ll x,ll y)
 {
     if (y == 0)
     return 1;
-    LL p = power(x, y/2);
+    ll p = power(x, y/2);
     p = (p * p);
 
     return (y%2 == 0)? p : (x * p);
-}           
-const long long N=(long long)(1e5+1);
-const long long N2=(long long)(1e6+1);
-const long long MOD=(long long)(1e9+7);
-const long long INF=(long long)(2e18);
-LL n;
-LL a[N],b[N],c[N];
-LL dp[N][4];
+}
+//....................................................................................//
+int lcm(ll a, ll b)
+{
+    ll lar = max(a, b);
+    ll small = min(a, b);
+    for (ll i = lar; ; i += lar) {
+    if (i % small == 0)
+        return i;
+    }
+}
+//....................................................................................//
+int bsearch(ll arr[],ll l,ll r,ll x)
+{
+    while (l <= r)
+    {
+    ll m = l + (r - l) / 2;
+    if (arr[m] == x){
+        return m;
+    }
+    if (arr[m] < x){
+        l = m + 1;
+    }
+    else
+        r = m - 1;
+    }
+    return -1;
+}
+//....................................................................................//
+template<typename T> T gcd(T a,T b) { if(a==0) return b; return gcd(b%a,a); }
+template<typename T> T pow(T a,T b, ll m){T ans=1; while(b>0){ if(b%2==1) ans=(ans*a)%m; b/=2; a=(a*a)%m; } return ans%m; }
+//int bsearch(ll arr[], ll l, ll r, ll x){while (l <= r){ll m = l + (r - l) / 2;if(arr[m] == x){return m;}if(arr[m] < x){l = m + 1;}else{r = m - 1;}}}
+//Solve:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 void solve()
 {
-	cin>>n;
-	fe(i,1,n){
-		cin>>a[i]>>b[i]>>c[i]; 
-	}
-	fe(i,1,n){
-		dp[i][1]=a[i]+max(dp[i-1][2],dp[i-1][3]);
-		dp[i][2]=b[i]+max(dp[i-1][1],dp[i-1][3]);
-		dp[i][3]=c[i]+max(dp[i-1][1],dp[i-1][2]);
-	}
-	cout<<Max(dp[n][1],dp[n][2],dp[n][3]);
+        ll n;
+        cin>>n;
+        ll dp[n+1][3];
+        dp[0][0]=dp[0][1]=dp[0][2]=0;
+        fe(i,1,n)
+        {
+                ll a,b,c;
+                cin>>a>>b>>c;
+                dp[i][0]=a+ max(dp[i-1][1],dp[i-1][2]);
+                dp[i][1]=b+ max(dp[i-1][2],dp[i-1][0]);
+                dp[i][2]=c+ max(dp[i-1][0],dp[i-1][1]);
+        }
+        cout<<Max(dp[n][0],dp[n][1],dp[n][2])<<endl;
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-int main()
+
+int main ()
 {
-        fastIO
-        TC(t){solve();}
-        return 0;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+
+
+    TC(t)
+    {
+        solve();
+    }
+
+    return 0;
 }
