@@ -1,4 +1,3 @@
-
 // Problem : D - Sum of Divisors
 // Contest : AtCoder - AtCoder Beginner Contest 172
 // URL : https://atcoder.jp/contests/abc172/tasks/abc172_d
@@ -86,17 +85,20 @@ const long long N=(long long)(1e5+1);
 const long long N2=(long long)(1e6+1);
 const long long MOD=(long long)(1e9+7);
 const long long INF=(long long)(2e18);
-
+LL a[5000001];
 void solve()
 {
 	LL n;
 	cin>>n;
-	LL ans=0;
-	fe(i,1,n){
-		LL x=n/i;
-		ans+=i*((x*(x+1))/2);
-	}
-	cout<<ans<<endl;
+        LL x=sqrt(n);
+        LL ans=0;
+	fe(m,1,x){
+                
+                ans+=(m*(m+floor(n/m))*(floor(n/m)+1-m));
+        }
+        n=sqrt(n);
+        LL y=n*(n+1)*(2*n+1)/6;
+        cout<<ans-y;
 }
 int main()
 {
