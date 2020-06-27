@@ -85,24 +85,24 @@ const long long N=(long long)(1e5+1);
 const long long N2=(long long)(1e6+1);
 const long long MOD=(long long)(1e9+7);
 const long long INF=(long long)(2e18);
-const long long maxN=(long long)(1e7+1);
-LL a[maxN];
+
 void solve()
 {
 	LL n;
 	cin>>n;
+	LL a[n+1];
 	mem(a,0);
 	LL x=1;
 	LL ans=0;
 	while(x<=n/2){
-		for(LL i=x;i<=n;i+=x){
+		for(LL i=2*x;i<=n;i+=x){
 			a[i]++;
 			//trace2(i,a[i]);
 		}
 		x++;
 	}
 	
-	fe(i,x,n){
+	fe(i,1,n){
 		a[i]++;
 	}
 	fe(i,1,n){
