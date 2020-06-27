@@ -92,14 +92,22 @@ void solve()
 	LL n;
 	cin>>n;
 	mem(a,0);
-	fe(i,1,n){
-		for(LL j=1;j*i<=n;j++){
-			a[i*j]++;
-		}	
-	}
+	LL x=1;
 	LL ans=0;
+	while(x<=n/2){
+		for(LL i=x;i<=n;i+=x){
+			a[i]++;
+			//trace2(i,a[i]);
+		}
+		x++;
+	}
+	
+	fe(i,x,n){
+		a[i]++;
+	}
 	fe(i,1,n){
-		ans+=(i*a[i]);
+		//trace2(i,a[i]);
+		ans+=i*a[i];
 	}
 	cout<<ans<<endl;
 }
