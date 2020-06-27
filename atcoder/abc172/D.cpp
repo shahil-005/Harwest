@@ -1,3 +1,4 @@
+
 // Problem : D - Sum of Divisors
 // Contest : AtCoder - AtCoder Beginner Contest 172
 // URL : https://atcoder.jp/contests/abc172/tasks/abc172_d
@@ -90,24 +91,10 @@ void solve()
 {
 	LL n;
 	cin>>n;
-	LL a[n+1];
-	mem(a,0);
-	LL x=1;
 	LL ans=0;
-	while(x<=n/2){
-		for(LL i=2*x;i<=n;i+=x){
-			a[i]++;
-			//trace2(i,a[i]);
-		}
-		x++;
-	}
-	
 	fe(i,1,n){
-		a[i]++;
-	}
-	fe(i,1,n){
-		//trace2(i,a[i]);
-		ans+=i*a[i];
+		LL x=n/i;
+		ans+=i*((x*(x+1))/2);
 	}
 	cout<<ans<<endl;
 }
