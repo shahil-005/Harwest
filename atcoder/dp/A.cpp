@@ -1,7 +1,7 @@
 
-// Problem : B - Frog 2
+// Problem : A - Frog 1
 // Contest : AtCoder - Educational DP Contest
-// URL : https://atcoder.jp/contests/dp/tasks/dp_b
+// URL : https://atcoder.jp/contests/dp/tasks/dp_a
 // Memory Limit : 1024 MB
 // Time Limit : 2000 ms
 // Powered by CP Editor (https://github.com/cpeditor/cpeditor)
@@ -101,23 +101,22 @@ const long long N=(long long)(1e5+1);
 const long long N2=(long long)(1e6+1);
 const long long MOD=(long long)(1e9+7);
 const long long INF=(long long)(2e18);
-LL n,k;
+LL n;
 LL a[N],dp[N];
 void solve()
 {
-	cin>>n;
-	fe(i,1,n){
-		cin>>a[i];
-	}
-	LL k=2;
-	fe(i,2,n){
-		LL x=max(1LL,i-k);
-		dp[i]=IMAX;
-		fe(j,x,i-1){
-			dp[i]=min(dp[i],dp[j]+abs(a[i]-a[j]));
-		}
-	}
-	cout<<dp[n];
+        cin>>n;
+        fe(i,1,n){
+        	cin>>a[i];
+        }
+        dp[1]=0;
+        dp[2]=abs(a[2]-a[1]);
+        fe(i,3,n){
+        		LL x=dp[i-1]+abs(a[i]-a[i-1]);
+                LL y=dp[i-2]+abs(a[i]-a[i-2]);
+                dp[i]= min(x,y);
+        }
+        cout<<dp[n]<<endl;
 }
 int main()
 {
