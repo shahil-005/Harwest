@@ -1,4 +1,20 @@
 {
+  "AC17733903": {
+    "contest_id": "abc132",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc132/A.cpp",
+    "platform": "AtCoder",
+    "problem_index": "A",
+    "problem_name": "Fifty-Fifty",
+    "problem_url": "https://atcoder.jp/contests/abc132/tasks/abc132_a",
+    "submission_id": "AC17733903",
+    "submission_url": "https://atcoder.jp/contests/abc132/submissions/17733903",
+    "tags": [
+      "AtCoder",
+      "*100"
+    ],
+    "timestamp": "Oct/30/2020 17:32"
+  },
   "AC17733951": {
     "contest_id": "abc132",
     "language": "C++ (GCC 9.2.1)",
