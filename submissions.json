@@ -1,4 +1,20 @@
 {
+  "AC17733951": {
+    "contest_id": "abc132",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc132/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "Ordinary Number",
+    "problem_url": "https://atcoder.jp/contests/abc132/tasks/abc132_b",
+    "submission_id": "AC17733951",
+    "submission_url": "https://atcoder.jp/contests/abc132/submissions/17733951",
+    "tags": [
+      "AtCoder",
+      "*200"
+    ],
+    "timestamp": "Oct/30/2020 17:34"
+  },
   "AC17734036": {
     "contest_id": "abc132",
     "language": "C++ (GCC 9.2.1)",
