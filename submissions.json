@@ -1,4 +1,20 @@
 {
+  "AC17858486": {
+    "contest_id": "abc134",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc134/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "Golden Apple",
+    "problem_url": "https://atcoder.jp/contests/abc134/tasks/abc134_b",
+    "submission_id": "AC17858486",
+    "submission_url": "https://atcoder.jp/contests/abc134/submissions/17858486",
+    "tags": [
+      "AtCoder",
+      "*200"
+    ],
+    "timestamp": "Nov/03/2020 15:45"
+  },
   "AC17858573": {
     "contest_id": "abc134",
     "language": "C++ (GCC 9.2.1)",
