@@ -1,4 +1,20 @@
 {
+  "AC17922113": {
+    "contest_id": "abc137",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc137/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "One Clue",
+    "problem_url": "https://atcoder.jp/contests/abc137/tasks/abc137_b",
+    "submission_id": "AC17922113",
+    "submission_url": "https://atcoder.jp/contests/abc137/submissions/17922113",
+    "tags": [
+      "AtCoder",
+      "*200"
+    ],
+    "timestamp": "Nov/07/2020 13:58"
+  },
   "AC17922207": {
     "contest_id": "abc137",
     "language": "C++ (GCC 9.2.1)",
