@@ -1,4 +1,20 @@
 {
+  "AC18021507": {
+    "contest_id": "abc138",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc138/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Ki",
+    "problem_url": "https://atcoder.jp/contests/abc138/tasks/abc138_d",
+    "submission_id": "AC18021507",
+    "submission_url": "https://atcoder.jp/contests/abc138/submissions/18021507",
+    "tags": [
+      "AtCoder",
+      "*400"
+    ],
+    "timestamp": "Nov/10/2020 00:51"
+  },
   "AC18118874": {
     "contest_id": "abc183",
     "language": "C++ (GCC 9.2.1)",
