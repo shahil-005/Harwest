@@ -1,3 +1,11 @@
+
+// Problem: A - ReLU
+// Contest: AtCoder - AtCoder Beginner Contest 183
+// URL: https://atcoder.jp/contests/abc183/tasks/abc183_a
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// Powered by CP Editor (https://github.com/cpeditor/cpeditor)
+
 //g++ -Wall
 //g++ -static -DONLINE_JUDGE -Wl,--stack=268435456 -O2 -std=c++17
 #include <bits/stdc++.h>
@@ -91,7 +99,6 @@ template<class L,class R> ostream& operator<<(ostream& os,pair<L,R> P){
 	return os<<"("<<P.first<<","<<P.second<<")";
 }
 
-//Debug
 #define TRACE
 #ifdef TRACE
 #define trace(...) __f(#__VA_ARGS__,__VA_ARGS__)
@@ -106,19 +113,6 @@ void __f(const char* names,Arg1&& arg1,Args&&... args){
 #else
 #define trace(...) 1
 #endif
-
-//Time
-#define debug(...) fprintf(stderr, __VA_ARGS__), fflush(stderr)
-
-#define time__(d) \
-    for ( \
-        auto blockTime = make_pair(chrono::high_resolution_clock::now(), true); \
-        blockTime.second; \
-        debug("%s: %lld ms\n", d, chrono::duration_cast<chrono::milliseconds>(chrono::high_resolution_clock::now() - blockTime.first).count()), blockTime.second = false \
-    )           
-// #define time__(d) for(long blockTime = 0; (blockTime == 0 ? (blockTime=clock()) != 0 : false); debug("%s time : %.4fs", d, (double)(clock() - blockTime) / CLOCKS_PER_SEC))
-
-//Functions
 bool isprime(LL n) 	//O(sqrt(n)) approach
 { 
     if(n <= 1){return false;} 
@@ -198,9 +192,14 @@ const long long INF=(long long)(2e18);
 
 void solve(LL tc)
 {
-	int n;
-	cin>>n;
-	cout<<max(0,n);
+	LL x;
+	cin>>x;
+	if(x>=0){
+		cout<<x;
+	}
+	else{
+		cout<<0;
+	}
 }
 int main()
 {
@@ -208,9 +207,7 @@ int main()
         LL cnt=1;
         TC(t){
         	// google(cnt);
-                time__("solve"){
-	                solve(cnt);
-	        }
+                solve(cnt);
                 cnt++;
         }
         return 0;
