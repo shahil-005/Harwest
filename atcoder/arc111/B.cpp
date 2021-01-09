@@ -115,7 +115,6 @@ VL adj[NN];
 LL deg[NN];
 void solve(LL tc)
 {
-	
 	// https://codeforces.com/blog/entry/86557?#comment-746501 : Based on this
 	LL n;
 	cin>>n;
@@ -154,11 +153,6 @@ void solve(LL tc)
 		}
 	}
 	cout<<ans;
-	
-	//2nd approach ,run a dfs on each connected component ,
-	//If that CC is has cycles ,then all of that nodes can be selected
-	//If that CC is a tree ,then all nodes excpet 1 of that tree can be selected
-	//Submission https://atcoder.jp/contests/arc111/submissions/19298741
 }
 //https://codeforces.com/blog/entry/86557?#comment-746509
 //AnandOza ARC 111 video
