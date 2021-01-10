@@ -112,15 +112,17 @@ const long long INF=(long long)(2e18);
 
 void solve(LL tc)
 {
-	//https://atcoder.jp/contests/arc111/editorial/542
-	//Another explanation is subtracting multiples of m^2 will not affect the answer
-	//as explained in the editorial
-	//Also the 2nd part of problem is useles
+	//https://codeforces.com/blog/entry/86557?#comment-746512 : Main proof
 	
 	LL n,m;
 	cin>>n>>m;
-	cout<<powm(10,n,m*m)/m;
+	LL mod=m*m;
+	LL x=powm(10,n,mod);
+	cout<<x/m;
 }
+// https://codeforces.com/blog/entry/86557?#comment-746481
+// https://codeforces.com/blog/entry/86557?#comment-746482
+// https://atcoder.jp/contests/arc111/editorial/542
 int main()
 {
 // #ifndef ONLINE_JUDGE
