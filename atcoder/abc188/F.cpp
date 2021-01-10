@@ -118,8 +118,10 @@ LL fun(LL x,LL y){
 		else{
 			LL ans=y-x;
 			if(y&1){
-
-				ans=min(ans,1+min(fun(x,y-1),fun(x,y+1)));
+				LL op1=(y-1)/2;
+				LL op2=(y+1)/2;
+				
+				ans=min(ans,2+min(fun(x,op1),fun(x,op2)));
 			}
 			else{
 				ans=min(ans,1+fun(x,y/2));
