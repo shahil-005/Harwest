@@ -118,7 +118,9 @@ void solve(LL tc)
 	cin>>n>>m;
 	LL mod=m*m;
 	LL x=powm(10,n,mod);
-	cout<<x/m;
+	LL y=powm(10,n,m);
+	LL ans=(x-y)/m;
+	cout<<ans;
 }
 // https://codeforces.com/blog/entry/86557?#comment-746481
 // https://codeforces.com/blog/entry/86557?#comment-746482
