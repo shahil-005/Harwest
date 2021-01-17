@@ -1,4 +1,20 @@
 {
+  "AC19500346": {
+    "contest_id": "dp",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/dp/D.cpp",
+    "platform": "AtCoder",
+    "problem_index": "D",
+    "problem_name": "Knapsack 1",
+    "problem_url": "https://atcoder.jp/contests/dp/tasks/dp_d",
+    "submission_id": "AC19500346",
+    "submission_url": "https://atcoder.jp/contests/dp/submissions/19500346",
+    "tags": [
+      "AtCoder",
+      "*100"
+    ],
+    "timestamp": "Jan/18/2021 00:51"
+  },
   "AC19500557": {
     "contest_id": "dp",
     "language": "C++ (GCC 9.2.1)",
