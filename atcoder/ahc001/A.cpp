@@ -14,7 +14,6 @@ using namespace std;
 #define ff                      first
 #define ss                      second
 #define fix(f,n) 		std::fixed<<std::setprecision(n)<<f
-#define pll 			pair<ll,ll>
 //Time:
 #define debug2(...) fprintf(stderr, __VA_ARGS__), fflush(stderr)
 #define time__(d) \
@@ -122,189 +121,22 @@ ll modsum(ll a, ll b,ll mod){  return (a + b) % mod;}
 const long long N=(long long)(1e5+1);
 const long long MOD=(long long)(1e9+7);
 const long long inf=(long long)(1e9);
-ll n;
-ll x[N],y[N];
-vector< pair < pll, pair < pll , pll > > >v(N);
 void solve(int tc)
 {
+	ll n;
 	cin>>n;
-	ll r[n+1];
+	ll x[n+1],y[n+1];
+	ld r[n+1];
 	ld sum=0;
-	
 	for(int i=1;i<=n;i++){
 		cin>>x[i]>>y[i]>>r[i];
-		// cout<<x[i]<<" "<<y[i]<<" "<<x[i]+1<<" "<<y[i]+1<<endl;
-		v[i]={{r[i],i},{{x[i],y[i]},{x[i]+1,y[i]+1}}};
+		cout<<x[i]<<" "<<y[i]<<" "<<x[i]+1<<" "<<y[i]+1<<endl;
 		
 		// ld t1=((2*inf)/r[i]);
 		// ld t2=inf/(r[i]*r[i]);
 		// sum+=(t1-t2);
 	}
 	// cout<<(ll)round(sum);
-	// for(int i=1;i<=n;i++){
-		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
-		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
-	// }
-	sort(v.begin()+1,v.begin()+n+1);
-	// for(int i=1;i<=n;i++){
-		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
-		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
-	// }
-	for(int i=1;i<=n;i++){
-		ll x1=v[i].ss.ff.ff;
-		while(x1>=0){
-			if(x1==0){
-				break;
-			}
-			x1--;
-			ll f=0;
-			ll f2=-1;
-			for(int j=1;j<=n;j++){
-				if(i!=j){
-					ll t1=v[j].ss.ff.ff;
-					ll t2=v[j].ss.ss.ff;
-					if(x1==t2){
-						f2=max(f2,t2);
-					}
-					if(x1>t1 && x1<t2){
-						f=1;
-						break;
-					}
-				}
-			}
-			if(f==0){
-				if(f2!=-1){
-					v[i].ss.ff.ff=f2;
-					break;
-				}
-				else{
-					v[i].ss.ff.ff=x1;
-				}
-				
-			}
-			else{
-				break;
-			}
-			if(x1==0){
-				break;
-			}
-		}
-		
-		ll x2=v[i].ss.ss.ff;
-		while(x2<=9999){
-			if(x2==9999){
-				break;
-			}
-			x2++;
-			ll f=0;
-			ll f2=INT_MAX;
-			for(int j=1;j<=n;j++){
-				if(i!=j){
-					ll t1=v[j].ss.ff.ff;
-					ll t2=v[j].ss.ss.ff;
-					if(x2==t1){
-						f2=min(f2,t1);
-					}
-					if(x2>t1 && x2<t2){
-						f=1;
-						break;
-					}
-				}
-			}
-			if(f==0){
-				if(f2!=INT_MAX){
-					v[i].ss.ss.ff=f2;
-					break;
-				}
-				v[i].ss.ss.ff=x2;
-			}
-			else{
-				break;
-			}
-			if(x2==9999){
-				break;
-			}
-		}
-		
-		ll y1=v[i].ss.ff.ss;
-		while(y1>=0){
-			if(y1==0){
-				break;
-			}
-			y1--;
-			ll f=0;
-			ll f2=-1;
-			for(int j=1;j<=n;j++){
-				if(i!=j){
-					ll t1=v[j].ss.ff.ss;
-					ll t2=v[j].ss.ss.ss;
-					if(y1==t2){
-						f2=max(f2,t2);
-					}
-					if(y1>t1 && y1<t2){
-						f=1;
-						break;
-					}
-				}
-			}
-			if(f==0){
-				if(f2!=-1){
-					v[i].ss.ff.ss=f2;
-					break;
-				}
-				v[i].ss.ff.ss=y1;
-			}
-			else{
-				break;
-			}
-			if(y1==0){
-				break;
-			}
-		}
-		
-		ll y2=v[i].ss.ss.ss;
-		while(y2<=9999){
-			if(y2==9999){
-				break;
-			}
-			y2++;
-			ll f=0;
-			ll f2=INT_MAX;
-			for(int j=1;j<=n;j++){
-				if(i!=j){
-					ll t1=v[j].ss.ff.ss;
-					ll t2=v[j].ss.ss.ss;
-					if(y2==t1){
-						f2=min(f2,t1);
-					}
-					if(y2>t1 && y2<t2){
-						f=1;
-						break;
-					}
-				}
-			}
-			if(f==0){
-				if(f2!=INT_MAX){
-					v[i].ss.ss.ss=f2;
-					break;
-				}
-				v[i].ss.ss.ss=y2;
-			}
-			else{
-				break;
-			}
-			if(y2==9999){
-				break;
-			}
-		}
-		swap(v[i].ff.ff,v[i].ff.ss);
-	}
-	sort(v.begin()+1,v.begin()+n+1);
-	for(int i=1;i<=n;i++){
-		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
-		cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
-	}
-	
 }
 int main(){
 	start();
