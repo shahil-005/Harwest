@@ -134,7 +134,7 @@ void solve(int tc)
 	for(int i=1;i<=n;i++){
 		cin>>x[i]>>y[i]>>r[i];
 		// cout<<x[i]<<" "<<y[i]<<" "<<x[i]+1<<" "<<y[i]+1<<endl;
-		v[i]={{i,r[i]},{{x[i],y[i]},{x[i]+1,y[i]+1}}};
+		v[i]={{r[i],i},{{x[i],y[i]},{x[i]+1,y[i]+1}}};
 		
 		// ld t1=((2*inf)/r[i]);
 		// ld t2=inf/(r[i]*r[i]);
@@ -145,26 +145,19 @@ void solve(int tc)
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
 	// }
-	// sort(v.begin()+1,v.begin()+n+1);
 	// shuffle(v.begin()+1,v.begin()+n+1,rng);
+	reverse(v.begin()+1,v.begin()+n+1);
 	// for(int i=1;i<=n;i++){
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
 	// }
 	for(int i=1;i<=n;i++){
-		// if(v[i].ff.ss==1 || v[i].ff.ss==28 || v[i].ff.ss==3){
-			// debug(v[i]);
-		// }
 		ll x1=v[i].ss.ff.ff;
-		ll x2=v[i].ss.ss.ff;
-		ll y1=v[i].ss.ff.ss;
-		ll y2=v[i].ss.ss.ss;
-		ll prev=0;
 		while(x1>=0){
 			if(x1==0){
 				break;
 			}
-			
+			x1--;
 			ll f=0;
 			ll f2=-1;
 			for(int j=1;j<=n;j++){
@@ -175,22 +168,18 @@ void solve(int tc)
 				if(i!=j){
 					ll t1=v[j].ss.ff.ff;
 					ll t2=v[j].ss.ss.ff;
-					// if(i==1){
-						// debug(i,j,x1,u1,u2,u3,u4,t1,t2);
-					// }
 					
-					// if(x1==t2){
-						// f2=max(f2,t2);
-					// }
+					if(x1==t2){
+						f2=max(f2,t2);
+					}
 					// if(x1>t1 && x1<t2){
 						// f=1;
 						// break;
 					// }
-						
-					if(x1==t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4))){
+// 					
+					// if(x1==t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2))){
 						// f2=max(f2,t2);
-						f2=x1;
-					}
+					// }
 					if(x1>t1 && x1<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
 						f=1;
 						break;
@@ -213,29 +202,14 @@ void solve(int tc)
 			if(x1==0){
 				break;
 			}
-			ll area=(x2-x1)*(y2-y1);
-			if(area==r[i]){
-				break;
-			}
-			if(prev<r[i] && area>r[i]){
-				break;
-			}
-			prev=area;
-			x1--;
 		}
-		prev=0;
-		x1=v[i].ss.ff.ff;
-		x2=v[i].ss.ss.ff;
-		y1=v[i].ss.ff.ss;
-		y2=v[i].ss.ss.ss;
+		
+		ll x2=v[i].ss.ss.ff;
 		while(x2<=9999){
 			if(x2==9999){
 				break;
 			}
-			
-			if(i==19){
-				// debug(i,x2);
-			}
+			x2++;
 			ll f=0;
 			ll f2=INT_MAX;
 			for(int j=1;j<=n;j++){
@@ -243,22 +217,22 @@ void solve(int tc)
 				ll u2=v[i].ss.ss.ss;
 				ll u3=v[j].ss.ff.ss;
 				ll u4=v[j].ss.ss.ss;
-				if(i!=j){
+				// if(i!=j && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
+					if(i!=j){
 					ll t1=v[j].ss.ff.ff;
 					ll t2=v[j].ss.ss.ff;
 					
-					// if(x2==t1){
-						// f2=min(f2,t1);
-					// }
+					if(x2==t1){
+						f2=min(f2,t1);
+					}
 					// if(x2>t1 && x2<t2){
 						// f=1;
 						// break;
 					// }
 // 					
-					if(x2==t1  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4))){
+					// if(x2==t1  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2))){
 						// f2=min(f2,t1);
-						f2=x2;
-					}
+					// }
 					if(x2>t1 && x2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
 						f=1;
 						break;
@@ -278,26 +252,14 @@ void solve(int tc)
 			if(x2==9999){
 				break;
 			}
-			ll area=(x2-x1)*(y2-y1);
-			if(area==r[i]){
-				break;
-			}
-			if(prev<r[i] && area>r[i]){
-				break;
-			}
-			prev=area;
-			x2++;
 		}
-		prev=0;
-		x1=v[i].ss.ff.ff;
-		x2=v[i].ss.ss.ff;
-		y1=v[i].ss.ff.ss;
-		y2=v[i].ss.ss.ss;
+		
+		ll y1=v[i].ss.ff.ss;
 		while(y1>=0){
 			if(y1==0){
 				break;
 			}
-			
+			y1--;
 			ll f=0;
 			ll f2=-1;
 			for(int j=1;j<=n;j++){
@@ -305,6 +267,7 @@ void solve(int tc)
 				ll u2=v[i].ss.ss.ff;
 				ll u3=v[j].ss.ff.ff;
 				ll u4=v[j].ss.ss.ff;
+				// if(i!=j && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 				if(i!=j){
 					ll t1=v[j].ss.ff.ss;
 					ll t2=v[j].ss.ss.ss;
@@ -317,10 +280,9 @@ void solve(int tc)
 						// break;
 					// }
 // 					
-					if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+					// if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						// f2=max(f2,t2);
-						f2=y1;
-					}
+					// }
 					if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
 						f=1;
 						break;
@@ -340,26 +302,14 @@ void solve(int tc)
 			if(y1==0){
 				break;
 			}
-			ll area=(x2-x1)*(y2-y1);
-			if(area==r[i]){
-				break;
-			}
-			if(prev<r[i] && area>r[i]){
-				break;
-			}
-			prev=area;
-			y1--;
 		}
-		prev=0;
-		x1=v[i].ss.ff.ff;
-		x2=v[i].ss.ss.ff;
-		y1=v[i].ss.ff.ss;
-		y2=v[i].ss.ss.ss;
+		
+		ll y2=v[i].ss.ss.ss;
 		while(y2<=9999){
 			if(y2==9999){
 				break;
 			}
-			
+			y2++;
 			ll f=0;
 			ll f2=INT_MAX;
 			for(int j=1;j<=n;j++){
@@ -367,22 +317,22 @@ void solve(int tc)
 				ll u2=v[i].ss.ss.ff;
 				ll u3=v[j].ss.ff.ff;
 				ll u4=v[j].ss.ss.ff;
-				if(i!=j){
+				// if(i!=j && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
+					if(i!=j){
 					ll t1=v[j].ss.ff.ss;
 					ll t2=v[j].ss.ss.ss;
-// 					
-					// if(y2==t1){
-						// f2=min(f2,t1);
-					// }
+					
+					if(y2==t1){
+						f2=min(f2,t1);
+					}
 					// if(y2>t1 && y2<t2){
 						// f=1;
 						// break;
 					// }
 // 					
-					if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+					// if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						// f2=min(f2,t1);
-						f2=y2;
-					}
+					// }
 					if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
 						f=1;
 						break;
@@ -402,40 +352,15 @@ void solve(int tc)
 			if(y2==9999){
 				break;
 			}
-			ll area=(x2-x1)*(y2-y1);
-			if(area==r[i]){
-				break;
-			}
-			if(prev<r[i] && area>r[i]){
-				break;
-			}
-			prev=area;
-			y2++;
 		}
-		// if(v[i].ff.ss==1 || v[i].ff.ss==28 || v[i].ff.ss==3){
-			// debug(v[i]);
-			ll area=(x2-x1)*(y2-y1);
-			// debug(area);
-			// ld t1=((2*inf)/r[i]);
-			// ld t2=inf/(r[i]*r[i]);
-			// sum+=(t1-t2);
-			
-		// }
-		// swap(v[i].ff.ff,v[i].ff.ss);
+		swap(v[i].ff.ff,v[i].ff.ss);
 	}
-	// sort(v.begin()+1,v.begin()+n+1);
-	
-	vector< pll> iv;
+	sort(v.begin()+1,v.begin()+n+1);
 	for(int i=1;i<=n;i++){
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
-		// iv.pb({v[i].ss.ff.ss,v[i].ss.ss.ss});
 	}
-	// sort(all(iv));
-	// for(auto it:iv){
-		// // cout<<it.ff<<" "<<it.ss<<endl;
-	// }
-// 	
+	
 }
 int main(){
 	start();
