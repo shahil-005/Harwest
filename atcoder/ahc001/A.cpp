@@ -160,26 +160,13 @@ void solve(int tc)
 			ll f=0;
 			ll f2=-1;
 			for(int j=1;j<=n;j++){
-				ll u1=v[i].ss.ff.ss;
-				ll u2=v[i].ss.ss.ss;
-				ll u3=v[j].ss.ff.ss;
-				ll u4=v[j].ss.ss.ss;
 				if(i!=j){
 					ll t1=v[j].ss.ff.ff;
 					ll t2=v[j].ss.ss.ff;
-					
 					if(x1==t2){
 						f2=max(f2,t2);
 					}
-					// if(x1>t1 && x1<t2){
-						// f=1;
-						// break;
-					// }
-// 					
-					// if(x1==t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2))){
-						// f2=max(f2,t2);
-					// }
-					if(x1>t1 && x1<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
+					if(x1>t1 && x1<t2){
 						f=1;
 						break;
 					}
@@ -212,27 +199,13 @@ void solve(int tc)
 			ll f=0;
 			ll f2=INT_MAX;
 			for(int j=1;j<=n;j++){
-				ll u1=v[i].ss.ff.ss;
-				ll u2=v[i].ss.ss.ss;
-				ll u3=v[j].ss.ff.ss;
-				ll u4=v[j].ss.ss.ss;
-				// if(i!=j && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
-					if(i!=j){
+				if(i!=j){
 					ll t1=v[j].ss.ff.ff;
 					ll t2=v[j].ss.ss.ff;
-					
 					if(x2==t1){
 						f2=min(f2,t1);
 					}
-					// if(x2>t1 && x2<t2){
-						// f=1;
-						// break;
-					// }
-// 					
-					// if(x2==t1  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2))){
-						// f2=min(f2,t1);
-					// }
-					if(x2>t1 && x2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
+					if(x2>t1 && x2<t2){
 						f=1;
 						break;
 					}
@@ -262,27 +235,13 @@ void solve(int tc)
 			ll f=0;
 			ll f2=-1;
 			for(int j=1;j<=n;j++){
-				ll u1=v[i].ss.ff.ff;
-				ll u2=v[i].ss.ss.ff;
-				ll u3=v[j].ss.ff.ff;
-				ll u4=v[j].ss.ss.ff;
-				// if(i!=j && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 				if(i!=j){
 					ll t1=v[j].ss.ff.ss;
 					ll t2=v[j].ss.ss.ss;
-					
 					if(y1==t2){
 						f2=max(f2,t2);
 					}
-					// if(y1>t1 && y1<t2){
-						// f=1;
-						// break;
-					// }
-// 					
-					// if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
-						// f2=max(f2,t2);
-					// }
-					if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
+					if(y1>t1 && y1<t2){
 						f=1;
 						break;
 					}
@@ -312,27 +271,13 @@ void solve(int tc)
 			ll f=0;
 			ll f2=INT_MAX;
 			for(int j=1;j<=n;j++){
-				ll u1=v[i].ss.ff.ff;
-				ll u2=v[i].ss.ss.ff;
-				ll u3=v[j].ss.ff.ff;
-				ll u4=v[j].ss.ss.ff;
-				// if(i!=j && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
-					if(i!=j){
+				if(i!=j){
 					ll t1=v[j].ss.ff.ss;
 					ll t2=v[j].ss.ss.ss;
-					
 					if(y2==t1){
 						f2=min(f2,t1);
 					}
-					// if(y2>t1 && y2<t2){
-						// f=1;
-						// break;
-					// }
-// 					
-					// if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
-						// f2=min(f2,t1);
-					// }
-					if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
+					if(y2>t1 && y2<t2){
 						f=1;
 						break;
 					}
