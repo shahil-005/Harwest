@@ -129,13 +129,12 @@ void solve(int tc)
 {
 	cin>>n;
 	ll r[n+1];
-	ll sum=0;
+	ld sum=0;
 	
 	for(int i=1;i<=n;i++){
 		cin>>x[i]>>y[i]>>r[i];
 		// cout<<x[i]<<" "<<y[i]<<" "<<x[i]+1<<" "<<y[i]+1<<endl;
-		v[i]={{r[i],i},{{x[i],y[i]},{x[i]+1,y[i]+1}}};
-		swap(v[i].ff.ff,v[i].ff.ss);
+		v[i]={{i,r[i]},{{x[i],y[i]},{x[i]+1,y[i]+1}}};
 		
 		// ld t1=((2*inf)/r[i]);
 		// ld t2=inf/(r[i]*r[i]);
@@ -146,319 +145,285 @@ void solve(int tc)
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
 	// }
-	sort(v.begin()+1,v.begin()+n+1);
-	// reverse(v.begin()+1,v.begin()+n+1);
+	// sort(v.begin()+1,v.begin()+n+1);
 	// shuffle(v.begin()+1,v.begin()+n+1,rng);
 	// for(int i=1;i<=n;i++){
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
 	// }
-	ll x1,x2,y1,y2,prev;
 	for(int i=1;i<=n;i++){
 		// if(v[i].ff.ss==1 || v[i].ff.ss==28 || v[i].ff.ss==3){
 			// debug(v[i]);
 		// }
-		ll cs;
-		set<ll> ss;
-		while(sz(ss)<=3){
-			cs=rng2(1,4);
-			if(ss.find(cs)!=ss.end()){
-				continue;
+		ll x1=v[i].ss.ff.ff;
+		ll x2=v[i].ss.ss.ff;
+		ll y1=v[i].ss.ff.ss;
+		ll y2=v[i].ss.ss.ss;
+		ll prev=0;
+		while(x1>=0){
+			if(x1==0){
+				break;
 			}
-			ss.insert(cs);
-			if(cs==3){
-				x1=v[i].ss.ff.ff;
-				x2=v[i].ss.ss.ff;
-				y1=v[i].ss.ff.ss;
-				y2=v[i].ss.ss.ss;
-				prev=0;
+			
+			ll f=0;
+			ll f2=-1;
+			for(int j=1;j<=n;j++){
+				ll u1=v[i].ss.ff.ss;
+				ll u2=v[i].ss.ss.ss;
+				ll u3=v[j].ss.ff.ss;
+				ll u4=v[j].ss.ss.ss;
+				if(i!=j){
+					ll t1=v[j].ss.ff.ff;
+					ll t2=v[j].ss.ss.ff;
+					// if(i==1){
+						// debug(i,j,x1,u1,u2,u3,u4,t1,t2);
+					// }
+					
+					// if(x1==t2){
+						// f2=max(f2,t2);
+					// }
+					// if(x1>t1 && x1<t2){
+						// f=1;
+						// break;
+					// }
+						
+					if(x1==t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4))){
+						// f2=max(f2,t2);
+						f2=x1;
+					}
+					if(x1>t1 && x1<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+						f=1;
+						break;
+					}
+				}
+			}
+			if(f==0){
+				if(f2!=-1){
+					v[i].ss.ff.ff=f2;
+					break;
+				}
+				else{
+					v[i].ss.ff.ff=x1;
+				}
 				
-				while(y1>=0){
-					if(y1==0){
-						break;
-					}
-					
-					ll f=0;
-					ll f2=-1;
-					for(int j=1;j<=n;j++){
-						ll u1=v[i].ss.ff.ff;
-						ll u2=v[i].ss.ss.ff;
-						ll u3=v[j].ss.ff.ff;
-						ll u4=v[j].ss.ss.ff;
-						if(i!=j){
-							ll t1=v[j].ss.ff.ss;
-							ll t2=v[j].ss.ss.ss;
-							
-							if(y1==t2){
-								f2=max(f2,t2);
-							}
-							// if(y1>t1 && y1<t2){
-								// f=1;
-								// break;
-							// }
-		// 					
-							if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								// f2=max(f2,t2);
-								f2=y1;
-							}
-							if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								f=1;
-								break;
-							}
-						}
-					}
-					if(f==0){
-						if(f2!=-1){
-							v[i].ss.ff.ss=f2;
-							break;
-						}
-						v[i].ss.ff.ss=y1;
-					}
-					else{
-						break;
-					}
-					if(y1==0){
-						break;
-					}
-					ll area=(x2-x1)*(y2-y1);
-					if(area==r[i]){
-						break;
-					}
-					if(prev<r[i] && area>r[i]){
-						break;
-						
-					}
-					prev=area;
-					y1--;
-				}
 			}
-			if(cs==4){
-				prev=0;
-				x1=v[i].ss.ff.ff;
-				x2=v[i].ss.ss.ff;
-				y1=v[i].ss.ff.ss;
-				y2=v[i].ss.ss.ss;
-				while(y2<=9999){
-					if(y2==9999){
-						break;
-					}
-					
-					ll f=0;
-					ll f2=INT_MAX;
-					for(int j=1;j<=n;j++){
-						ll u1=v[i].ss.ff.ff;
-						ll u2=v[i].ss.ss.ff;
-						ll u3=v[j].ss.ff.ff;
-						ll u4=v[j].ss.ss.ff;
-						if(i!=j){
-							ll t1=v[j].ss.ff.ss;
-							ll t2=v[j].ss.ss.ss;
-		// 					
-							// if(y2==t1){
-								// f2=min(f2,t1);
-							// }
-							// if(y2>t1 && y2<t2){
-								// f=1;
-								// break;
-							// }
-		// 					
-							if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								// f2=min(f2,t1);
-								f2=y2;
-							}
-							if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								f=1;
-								break;
-							}
-						}
-					}
-					if(f==0){
-						if(f2!=INT_MAX){
-							v[i].ss.ss.ss=f2;
-							break;
-						}
-						v[i].ss.ss.ss=y2;
-					}
-					else{
-						break;
-					}
-					if(y2==9999){
-						break;
-					}
-					ll area=(x2-x1)*(y2-y1);
-					if(area==r[i]){
-						break;
-					}
-					if(prev<r[i] && area>r[i]){
-						break;
-					}
-					prev=area;
-					y2++;
-				}
+			else{
+				break;
 			}
-			if(cs==1){
-				prev=0;
-				x1=v[i].ss.ff.ff;
-				x2=v[i].ss.ss.ff;
-				y1=v[i].ss.ff.ss;
-				y2=v[i].ss.ss.ss;
-				while(x1>=0){
-					if(x1==0){
-						break;
-					}
-					
-					ll f=0;
-					ll f2=-1;
-					for(int j=1;j<=n;j++){
-						ll u1=v[i].ss.ff.ss;
-						ll u2=v[i].ss.ss.ss;
-						ll u3=v[j].ss.ff.ss;
-						ll u4=v[j].ss.ss.ss;
-						if(i!=j){
-							ll t1=v[j].ss.ff.ff;
-							ll t2=v[j].ss.ss.ff;
-							// if(i==1){
-								// debug(i,j,x1,u1,u2,u3,u4,t1,t2);
-							// }
-							
-							// if(x1==t2){
-								// f2=max(f2,t2);
-							// }
-							// if(x1>t1 && x1<t2){
-								// f=1;
-								// break;
-							// }
-								
-							if(x1==t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4))){
-								// f2=max(f2,t2);
-								f2=x1;
-							}
-							if(x1>t1 && x1<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								f=1;
-								break;
-							}
-						}
-					}
-					if(f==0){
-						if(f2!=-1){
-							v[i].ss.ff.ff=f2;
-							break;
-						}
-						else{
-							v[i].ss.ff.ff=x1;
-						}
-						
-					}
-					else{
-						break;
-					}
-					if(x1==0){
-						break;
-					}
-					ll area=(x2-x1)*(y2-y1);
-					if(area==r[i]){
-						break;
-					}
-					if(prev<r[i] && area>r[i]){
-						break;
-					}
-					prev=area;
-					x1--;
-				}
+			if(x1==0){
+				break;
 			}
-			if(cs==2){
-				prev=0;
-				x1=v[i].ss.ff.ff;
-				x2=v[i].ss.ss.ff;
-				y1=v[i].ss.ff.ss;
-				y2=v[i].ss.ss.ss;
-				while(x2<=9999){
-					if(x2==9999){
-						break;
-					}
-					
-					if(i==19){
-						// debug(i,x2);
-					}
-					ll f=0;
-					ll f2=INT_MAX;
-					for(int j=1;j<=n;j++){
-						ll u1=v[i].ss.ff.ss;
-						ll u2=v[i].ss.ss.ss;
-						ll u3=v[j].ss.ff.ss;
-						ll u4=v[j].ss.ss.ss;
-						if(i!=j){
-							ll t1=v[j].ss.ff.ff;
-							ll t2=v[j].ss.ss.ff;
-							
-							// if(x2==t1){
-								// f2=min(f2,t1);
-							// }
-							// if(x2>t1 && x2<t2){
-								// f=1;
-								// break;
-							// }
-		// 					
-							if(x2==t1  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4))){
-								// f2=min(f2,t1);
-								f2=x2;
-							}
-							if(x2>t1 && x2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								f=1;
-								break;
-							}
-						}
-					}
-					if(f==0){
-						if(f2!=INT_MAX){
-							v[i].ss.ss.ff=f2;
-							break;
-						}
-						v[i].ss.ss.ff=x2;
-					}
-					else{
-						break;
-					}
-					if(x2==9999){
-						break;
-					}
-					ll area=(x2-x1)*(y2-y1);
-					if(area==r[i]){
-						break;
-					}
-					if(prev<r[i] && area>r[i]){
-						break;
-					}
-					prev=area;
-					x2++;
-				}
+			ll area=(x2-x1)*(y2-y1);
+			if(area==r[i]){
+				break;
 			}
+			if(prev<r[i] && area>r[i]){
+				break;
+			}
+			prev=area;
+			x1--;
 		}
-		
-		
+		prev=0;
+		x1=v[i].ss.ff.ff;
+		x2=v[i].ss.ss.ff;
+		y1=v[i].ss.ff.ss;
+		y2=v[i].ss.ss.ss;
+		while(x2<=9999){
+			if(x2==9999){
+				break;
+			}
+			
+			if(i==19){
+				// debug(i,x2);
+			}
+			ll f=0;
+			ll f2=INT_MAX;
+			for(int j=1;j<=n;j++){
+				ll u1=v[i].ss.ff.ss;
+				ll u2=v[i].ss.ss.ss;
+				ll u3=v[j].ss.ff.ss;
+				ll u4=v[j].ss.ss.ss;
+				if(i!=j){
+					ll t1=v[j].ss.ff.ff;
+					ll t2=v[j].ss.ss.ff;
+					
+					// if(x2==t1){
+						// f2=min(f2,t1);
+					// }
+					// if(x2>t1 && x2<t2){
+						// f=1;
+						// break;
+					// }
+// 					
+					if(x2==t1  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4))){
+						// f2=min(f2,t1);
+						f2=x2;
+					}
+					if(x2>t1 && x2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+						f=1;
+						break;
+					}
+				}
+			}
+			if(f==0){
+				if(f2!=INT_MAX){
+					v[i].ss.ss.ff=f2;
+					break;
+				}
+				v[i].ss.ss.ff=x2;
+			}
+			else{
+				break;
+			}
+			if(x2==9999){
+				break;
+			}
+			ll area=(x2-x1)*(y2-y1);
+			if(area==r[i]){
+				break;
+			}
+			if(prev<r[i] && area>r[i]){
+				break;
+			}
+			prev=area;
+			x2++;
+		}
+		prev=0;
+		x1=v[i].ss.ff.ff;
+		x2=v[i].ss.ss.ff;
+		y1=v[i].ss.ff.ss;
+		y2=v[i].ss.ss.ss;
+		while(y1>=0){
+			if(y1==0){
+				break;
+			}
+			
+			ll f=0;
+			ll f2=-1;
+			for(int j=1;j<=n;j++){
+				ll u1=v[i].ss.ff.ff;
+				ll u2=v[i].ss.ss.ff;
+				ll u3=v[j].ss.ff.ff;
+				ll u4=v[j].ss.ss.ff;
+				if(i!=j){
+					ll t1=v[j].ss.ff.ss;
+					ll t2=v[j].ss.ss.ss;
+					
+					if(y1==t2){
+						f2=max(f2,t2);
+					}
+					// if(y1>t1 && y1<t2){
+						// f=1;
+						// break;
+					// }
+// 					
+					if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+						// f2=max(f2,t2);
+						f2=y1;
+					}
+					if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+						f=1;
+						break;
+					}
+				}
+			}
+			if(f==0){
+				if(f2!=-1){
+					v[i].ss.ff.ss=f2;
+					break;
+				}
+				v[i].ss.ff.ss=y1;
+			}
+			else{
+				break;
+			}
+			if(y1==0){
+				break;
+			}
+			ll area=(x2-x1)*(y2-y1);
+			if(area==r[i]){
+				break;
+			}
+			if(prev<r[i] && area>r[i]){
+				break;
+			}
+			prev=area;
+			y1--;
+		}
+		prev=0;
+		x1=v[i].ss.ff.ff;
+		x2=v[i].ss.ss.ff;
+		y1=v[i].ss.ff.ss;
+		y2=v[i].ss.ss.ss;
+		while(y2<=9999){
+			if(y2==9999){
+				break;
+			}
+			
+			ll f=0;
+			ll f2=INT_MAX;
+			for(int j=1;j<=n;j++){
+				ll u1=v[i].ss.ff.ff;
+				ll u2=v[i].ss.ss.ff;
+				ll u3=v[j].ss.ff.ff;
+				ll u4=v[j].ss.ss.ff;
+				if(i!=j){
+					ll t1=v[j].ss.ff.ss;
+					ll t2=v[j].ss.ss.ss;
+// 					
+					// if(y2==t1){
+						// f2=min(f2,t1);
+					// }
+					// if(y2>t1 && y2<t2){
+						// f=1;
+						// break;
+					// }
+// 					
+					if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+						// f2=min(f2,t1);
+						f2=y2;
+					}
+					if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+						f=1;
+						break;
+					}
+				}
+			}
+			if(f==0){
+				if(f2!=INT_MAX){
+					v[i].ss.ss.ss=f2;
+					break;
+				}
+				v[i].ss.ss.ss=y2;
+			}
+			else{
+				break;
+			}
+			if(y2==9999){
+				break;
+			}
+			ll area=(x2-x1)*(y2-y1);
+			if(area==r[i]){
+				break;
+			}
+			if(prev<r[i] && area>r[i]){
+				break;
+			}
+			prev=area;
+			y2++;
+		}
 		// if(v[i].ff.ss==1 || v[i].ff.ss==28 || v[i].ff.ss==3){
 			// debug(v[i]);
 			ll area=(x2-x1)*(y2-y1);
 			// debug(area);
-			// ll t3=min(r[i],area);
-			// ll t4=max(r[i],area);
-			// ld t1=(2*inf*t3)/t4;
-			// ld t2=(inf*t3*t3)/(t4*t4);
-			// ld temp=(ld)(((ld)min(area,r[i]))/((ld)max(area,r[i])));
-			// debug(temp);
-			// temp=1-temp;
-			// temp=temp*temp;
-			// temp=1-temp;
-			// temp=inf*temp;
-			// debug(temp);
-			// ld cur=1- (1-min())
-			// sum+=(ll)round(temp);
+			// ld t1=((2*inf)/r[i]);
+			// ld t2=inf/(r[i]*r[i]);
+			// sum+=(t1-t2);
 			
 		// }
 		// swap(v[i].ff.ff,v[i].ff.ss);
 	}
-	// debug(sum);
-	sort(v.begin()+1,v.begin()+n+1);
+	// sort(v.begin()+1,v.begin()+n+1);
 	
 	vector< pll> iv;
 	for(int i=1;i<=n;i++){
