@@ -145,8 +145,8 @@ void solve(int tc)
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
 	// }
-	shuffle(v.begin()+1,v.begin()+n+1,rng);
-	// reverse(v.begin()+1,v.begin()+n+1);
+	// shuffle(v.begin()+1,v.begin()+n+1,rng);
+	reverse(v.begin()+1,v.begin()+n+1);
 	// for(int i=1;i<=n;i++){
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
@@ -180,7 +180,7 @@ void solve(int tc)
 					// if(x1==t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2))){
 						// f2=max(f2,t2);
 					// }
-					if(x1>t1 && x1<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+					if(x1>t1 && x1<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						f=1;
 						break;
 					}
@@ -233,7 +233,7 @@ void solve(int tc)
 					// if(x2==t1  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2))){
 						// f2=min(f2,t1);
 					// }
-					if(x2>t1 && x2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+					if(x2>t1 && x2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						f=1;
 						break;
 					}
@@ -283,7 +283,7 @@ void solve(int tc)
 					// if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						// f2=max(f2,t2);
 					// }
-					if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+					if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						f=1;
 						break;
 					}
@@ -333,7 +333,7 @@ void solve(int tc)
 					// if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						// f2=min(f2,t1);
 					// }
-					if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+					if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2)) ){
 						f=1;
 						break;
 					}
