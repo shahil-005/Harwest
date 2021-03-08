@@ -145,8 +145,7 @@ void solve(int tc)
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
 	// }
-	// shuffle(v.begin()+1,v.begin()+n+1,rng);
-	reverse(v.begin()+1,v.begin()+n+1);
+	sort(v.begin()+1,v.begin()+n+1);
 	// for(int i=1;i<=n;i++){
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
