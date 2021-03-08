@@ -125,12 +125,6 @@ const long long inf=(long long)(1e9);
 ll n;
 ll x[N],y[N];
 vector< pair < pll, pair < pll , pll > > >v(N);
-bool cmp(const pair < pll, pair < pll , pll > > &a, pair < pll, pair < pll , pll > > &b){
-	if(a.ff.ff==b.ff.ff){
-		return (a.ff.ss > b.ff.ss);
-	}
-	return (a.ff.ff < b.ff.ff);
-}
 void solve(int tc)
 {
 	cin>>n;
@@ -140,8 +134,8 @@ void solve(int tc)
 	for(int i=1;i<=n;i++){
 		cin>>x[i]>>y[i]>>r[i];
 		// cout<<x[i]<<" "<<y[i]<<" "<<x[i]+1<<" "<<y[i]+1<<endl;
-		v[i]={{i,r[i]},{{x[i],y[i]},{x[i]+1,y[i]+1}}};
-		// swap(v[i].ff.ff,v[i].ff.ss);
+		v[i]={{r[i],i},{{x[i],y[i]},{x[i]+1,y[i]+1}}};
+		swap(v[i].ff.ff,v[i].ff.ss);
 		
 		// ld t1=((2*inf)/r[i]);
 		// ld t2=inf/(r[i]*r[i]);
@@ -152,7 +146,7 @@ void solve(int tc)
 		// cout<<v[i].ff.ff<<" "<<v[i].ff.ss<<" : ";
 		// cout<<v[i].ss.ff.ff<<" "<<v[i].ss.ff.ss<<" "<<v[i].ss.ss.ff<<" "<<v[i].ss.ss.ss<<endl;
 	// }
-	sort(v.begin()+1,v.begin()+n+1,cmp);
+	sort(v.begin()+1,v.begin()+n+1);
 	// reverse(v.begin()+1,v.begin()+n+1);
 	// shuffle(v.begin()+1,v.begin()+n+1,rng);
 	// for(int i=1;i<=n;i++){
@@ -166,15 +160,142 @@ void solve(int tc)
 		// }
 		ll cs;
 		set<ll> ss;
-		ll cur=1;
 		while(sz(ss)<=3){
-			// cs=rnd(1,4);
-			cs=cur++;
+			cs=rnd(1,4);
 			if(ss.find(cs)!=ss.end()){
 				continue;
 			}
 			ss.insert(cs);
-			
+			if(cs==3){
+				x1=v[i].ss.ff.ff;
+				x2=v[i].ss.ss.ff;
+				y1=v[i].ss.ff.ss;
+				y2=v[i].ss.ss.ss;
+				prev=0;
+				
+				while(y1>=0){
+					if(y1==0){
+						break;
+					}
+					
+					ll f=0;
+					ll f2=-1;
+					for(int j=1;j<=n;j++){
+						ll u1=v[i].ss.ff.ff;
+						ll u2=v[i].ss.ss.ff;
+						ll u3=v[j].ss.ff.ff;
+						ll u4=v[j].ss.ss.ff;
+						if(i!=j){
+							ll t1=v[j].ss.ff.ss;
+							ll t2=v[j].ss.ss.ss;
+							
+							if(y1==t2){
+								f2=max(f2,t2);
+							}
+							// if(y1>t1 && y1<t2){
+								// f=1;
+								// break;
+							// }
+		// 					
+							if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+								// f2=max(f2,t2);
+								f2=y1;
+							}
+							if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+								f=1;
+								break;
+							}
+						}
+					}
+					if(f==0){
+						if(f2!=-1){
+							v[i].ss.ff.ss=f2;
+							break;
+						}
+						v[i].ss.ff.ss=y1;
+					}
+					else{
+						break;
+					}
+					if(y1==0){
+						break;
+					}
+					ll area=(x2-x1)*(y2-y1);
+					if(area==r[i]){
+						break;
+					}
+					if(prev<r[i] && area>r[i]){
+						break;
+						
+					}
+					prev=area;
+					y1--;
+				}
+			}
+			if(cs==4){
+				prev=0;
+				x1=v[i].ss.ff.ff;
+				x2=v[i].ss.ss.ff;
+				y1=v[i].ss.ff.ss;
+				y2=v[i].ss.ss.ss;
+				while(y2<=9999){
+					if(y2==9999){
+						break;
+					}
+					
+					ll f=0;
+					ll f2=INT_MAX;
+					for(int j=1;j<=n;j++){
+						ll u1=v[i].ss.ff.ff;
+						ll u2=v[i].ss.ss.ff;
+						ll u3=v[j].ss.ff.ff;
+						ll u4=v[j].ss.ss.ff;
+						if(i!=j){
+							ll t1=v[j].ss.ff.ss;
+							ll t2=v[j].ss.ss.ss;
+		// 					
+							// if(y2==t1){
+								// f2=min(f2,t1);
+							// }
+							// if(y2>t1 && y2<t2){
+								// f=1;
+								// break;
+							// }
+		// 					
+							if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+								// f2=min(f2,t1);
+								f2=y2;
+							}
+							if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
+								f=1;
+								break;
+							}
+						}
+					}
+					if(f==0){
+						if(f2!=INT_MAX){
+							v[i].ss.ss.ss=f2;
+							break;
+						}
+						v[i].ss.ss.ss=y2;
+					}
+					else{
+						break;
+					}
+					if(y2==9999){
+						break;
+					}
+					ll area=(x2-x1)*(y2-y1);
+					if(area==r[i]){
+						break;
+					}
+					if(prev<r[i] && area>r[i]){
+						break;
+					}
+					prev=area;
+					y2++;
+				}
+			}
 			if(cs==1){
 				prev=0;
 				x1=v[i].ss.ff.ff;
@@ -310,136 +431,6 @@ void solve(int tc)
 					}
 					prev=area;
 					x2++;
-				}
-			}
-			if(cs==3){
-				x1=v[i].ss.ff.ff;
-				x2=v[i].ss.ss.ff;
-				y1=v[i].ss.ff.ss;
-				y2=v[i].ss.ss.ss;
-				prev=0;
-				
-				while(y1>=0){
-					if(y1==0){
-						break;
-					}
-					
-					ll f=0;
-					ll f2=-1;
-					for(int j=1;j<=n;j++){
-						ll u1=v[i].ss.ff.ff;
-						ll u2=v[i].ss.ss.ff;
-						ll u3=v[j].ss.ff.ff;
-						ll u4=v[j].ss.ss.ff;
-						if(i!=j){
-							ll t1=v[j].ss.ff.ss;
-							ll t2=v[j].ss.ss.ss;
-							
-							if(y1==t2){
-								f2=max(f2,t2);
-							}
-							// if(y1>t1 && y1<t2){
-								// f=1;
-								// break;
-							// }
-		// 					
-							if(y1==t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								// f2=max(f2,t2);
-								f2=y1;
-							}
-							if(y1>t1 && y1<t2 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								f=1;
-								break;
-							}
-						}
-					}
-					if(f==0){
-						if(f2!=-1){
-							v[i].ss.ff.ss=f2;
-							break;
-						}
-						v[i].ss.ff.ss=y1;
-					}
-					else{
-						break;
-					}
-					if(y1==0){
-						break;
-					}
-					ll area=(x2-x1)*(y2-y1);
-					if(area==r[i]){
-						break;
-					}
-					if(prev<r[i] && area>r[i]){
-						break;
-						
-					}
-					prev=area;
-					y1--;
-				}
-			}
-			if(cs==4){
-				prev=0;
-				x1=v[i].ss.ff.ff;
-				x2=v[i].ss.ss.ff;
-				y1=v[i].ss.ff.ss;
-				y2=v[i].ss.ss.ss;
-				while(y2<=9999){
-					if(y2==9999){
-						break;
-					}
-					
-					ll f=0;
-					ll f2=INT_MAX;
-					for(int j=1;j<=n;j++){
-						ll u1=v[i].ss.ff.ff;
-						ll u2=v[i].ss.ss.ff;
-						ll u3=v[j].ss.ff.ff;
-						ll u4=v[j].ss.ss.ff;
-						if(i!=j){
-							ll t1=v[j].ss.ff.ss;
-							ll t2=v[j].ss.ss.ss;
-		// 					
-							// if(y2==t1){
-								// f2=min(f2,t1);
-							// }
-							// if(y2>t1 && y2<t2){
-								// f=1;
-								// break;
-							// }
-		// 					
-							if(y2==t1 && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								// f2=min(f2,t1);
-								f2=y2;
-							}
-							if(y2>t1 && y2<t2  && ( (u1>u3 && u1<u4) || (u2>u3 && u2<u4) || (u3>u1 && u3<u2) || (u4>u1 && u4<u2) || (u1==u3 && u2==u4)) ){
-								f=1;
-								break;
-							}
-						}
-					}
-					if(f==0){
-						if(f2!=INT_MAX){
-							v[i].ss.ss.ss=f2;
-							break;
-						}
-						v[i].ss.ss.ss=y2;
-					}
-					else{
-						break;
-					}
-					if(y2==9999){
-						break;
-					}
-					ll area=(x2-x1)*(y2-y1);
-					if(area==r[i]){
-						break;
-					}
-					if(prev<r[i] && area>r[i]){
-						break;
-					}
-					prev=area;
-					y2++;
 				}
 			}
 		}
