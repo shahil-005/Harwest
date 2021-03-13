@@ -1,4 +1,20 @@
 {
+  "AC20912746": {
+    "contest_id": "ahc001",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/ahc001/A.cpp",
+    "platform": "AtCoder",
+    "problem_index": "A",
+    "problem_name": "AtCoder Ad",
+    "problem_url": "https://atcoder.jp/contests/ahc001/tasks/ahc001_a",
+    "submission_id": "AC20912746",
+    "submission_url": "https://atcoder.jp/contests/ahc001/submissions/20912746",
+    "tags": [
+      "AtCoder",
+      "*843957361457"
+    ],
+    "timestamp": "Mar/13/2021 23:12"
+  },
   "AC21060825": {
     "contest_id": "abc196",
     "language": "C++ (GCC 9.2.1)",
