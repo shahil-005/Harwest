@@ -10,7 +10,7 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-// #pragma GCC optimize ("trapv")
+#pragma GCC optimize ("trapv")
 //g++ -static -DONLINE_JUDGE -Wl,--stack=268435456 -O2 -std=c++17
 //g++ -std=c++17 -Wshadow -Wall -o "%e" "%f" -O2 -Wno-unused-result
 //g++ -std=c++17 -Wshadow -Wall -o "%e" "%f" -g  -D_GLIBCXX_DEBUG
@@ -112,40 +112,40 @@ bool overflow(long double a, long double b){return a * b > 1e18 + 10;}
 const long long N=(long long)(1e5+1);
 const long long MOD=(long long)(1e9+7);
 const long long inf=(long long)(1e18);
-int a[N];
-vector<int> adj[N];
+ll a[N];
+vector<ll> adj[N];
 bool vis[N];
-set<int> ans;
-
-void dfs(int nd,multiset<int> &s){
+vector<ll> ans;
+ll c[N];
+void dfs(ll nd){
 	vis[nd]=true;
-	if(!s.count(a[nd])){
-		ans.insert(nd);
+	if(!c[a[nd]]){
+		ans.pb(nd);
 	}
-	s.insert(a[nd]);
+	c[a[nd]]++;
 	for(auto it:adj[nd]){
 		if(!vis[it]){
-			dfs(it,s);
+			dfs(it);
 		}
 	}
-	s.erase(s.lower_bound(a[nd]));
+	c[a[nd]]--;
 }
 void solve(int tc)
 {
-	int n;
+	ll n;
 	cin>>n;
 	for(int i=1;i<=n;i++){
 		cin>>a[i];
 	}
 	for(int i=1;i<=n-1;i++){
-		int x,y;
+		ll x,y;
 		cin>>x>>y;
 		adj[x].pb(y);
 		adj[y].pb(x);
 	}
-	multiset<int> s;
-	dfs(1,s);
-	// sort(all(ans));
+	
+	dfs(1);
+	sort(all(ans));
 	for(auto it:ans){
 		cout<<it<<endl;
 	}
@@ -155,10 +155,10 @@ int main(){
 	int t=1;
 	// cin>>t;
 	for(int tc=1;tc<=t;tc++){
-		// time__("solve"){
+		time__("solve"){
 			// google(tc);
 			solve(tc); 
-                // }
+                }
 	}
         return 0;
 }
