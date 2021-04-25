@@ -115,7 +115,7 @@ const long long N=(long long)(1e5+1);
 const long long inf=(long long)(1e18);
 bool cmp(const pair<ll,string> &a,const pair<ll,string> &b){
 	if(a.ff==b.ff){
-		return (sz(a.ss) > sz(b.ss));
+		return (sz(a.ss) < sz(b.ss));
 	}
 	return (a.ff>b.ff);
 }
