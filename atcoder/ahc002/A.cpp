@@ -115,13 +115,16 @@ const long long N=(long long)(1e5+1);
 const long long inf=(long long)(1e18);
 int a[55][55];
 int b[55][55];
+bool vis[55][55];
 map<int,int> m;
+const int fx[]={+1, -1, +0, +0};
+const int fy[]={+0, +0, -1, +1};
+string dir="DULR";
 void solve(int tc)
 {
 	int x,y;
 	cin>>x>>y;
 	x++;y++;
-	pll p={x,y};
 	mem(a,-1);
 	mem(b,-1);
 	for(int i=1;i<=50;i++){
@@ -136,72 +139,38 @@ void solve(int tc)
 			cin>>b[i][j];
 		}
 	}
-	vector<pair<int,int> > v;
-	v.pb({1,0});
-	v.pb({-1,0});
-	v.pb({0,1});
-	v.pb({0,-1});
-	sort(all(v));
-	vector<pair<ll,string> > ans;
-	do{
-		string dir="";
-		for(auto it:v){
-			if(it.ff==0 && it.ss==1){
-				dir+='R';
-			}
-			if(it.ff==0 && it.ss==-1){
-				dir+='L';
-			}
-			if(it.ff==-1 && it.ss==0){
-				dir+='U';
-			}
-			if(it.ff==1 && it.ss==0){
-				dir+='D';
-			}
-		}
-		// debug(v,dir);
-		x=p.ff;
-		y=p.ss;
-		bool vis[55][55];
-		mem(vis,false);
-		ll sum=0;
-		string path="";
-		while(1){
-			sum+=b[x][y];
-			// debug(b[x][y]);
-			vis[x][y]=true;
-			if(m[a[x][y]]==2){
-				for(int i=0;i<4;i++){
-					if(a[x+v[i].ff][y+v[i].ss]==a[x][y]){
-						vis[x+v[i].ff][y+v[i].ss]=true;
-						// cout<<x+fx[i]<<" "<<y+fy[i]<<endl;
-						break;
-					}
-				}
-			}
-			int f=0;
+	
+	ll sum=0;
+	string ans="";
+	while(1){
+		sum+=b[x][y];
+		// debug(b[x][y]);
+		vis[x][y]=true;
+		if(m[a[x][y]]==2){
 			for(int i=0;i<4;i++){
-				if(!vis[x+v[i].ff][y+v[i].ss] && b[x+v[i].ff][y+v[i].ss]>=0){
-					f=1;
-					x=x+v[i].ff;
-					y=y+v[i].ss;
-					path+=dir[i];
+				if(a[x+fx[i]][y+fy[i]]==a[x][y]){
+					vis[x+fx[i]][y+fy[i]]=true;
+					// cout<<x+fx[i]<<" "<<y+fy[i]<<endl;
 					break;
 				}
 			}
-			if(!f){
+		}
+		int f=0;
+		for(int i=0;i<4;i++){
+			if(!vis[x+fx[i]][y+fy[i]] && b[x+fx[i]][y+fy[i]]>=0){
+				f=1;
+				x=x+fx[i];
+				y=y+fy[i];
+				ans+=dir[i];
 				break;
 			}
 		}
-		ans.pb({sum,path});
-	}while(next_permutation(all(v)));
-	
-	sort(all(ans));
-	reverse(all(ans));
-	// for(auto it:ans){
-		// cout<<it.ff<<" "<<it.ss<<endl;
-	// }
-	cout<<ans[0].ss<<endl;
+		if(!f){
+			break;
+		}
+	}
+	cout<<ans<<endl;
+	// cout<<sum<<endl;
 	
 }
 int main(){
