@@ -1,4 +1,20 @@
 {
+  "AC22067584": {
+    "contest_id": "ahc002",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/ahc002/A.cpp",
+    "platform": "AtCoder",
+    "problem_index": "A",
+    "problem_name": "Walking on Tiles",
+    "problem_url": "https://atcoder.jp/contests/ahc002/tasks/ahc002_a",
+    "submission_id": "AC22067584",
+    "submission_url": "https://atcoder.jp/contests/ahc002/submissions/22067584",
+    "tags": [
+      "AtCoder",
+      "*3138164"
+    ],
+    "timestamp": "Apr/25/2021 17:30"
+  },
   "AC22068469": {
     "contest_id": "ahc002",
     "language": "C++ (GCC 9.2.1)",

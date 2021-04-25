@@ -133,9 +133,7 @@ void fun(vector<pair<int,int> > v, int x, int y, bool (&vis)[55][55],ll sum,stri
 		}
 	}
 	sort(all(v));
-	ll cnt=100;
-	while(cnt--){
-		shuffle(all(v),rng);
+	do{
 		string dir="";
 		for(auto it:v){
 			if(it.ff==0 && it.ss==1){
@@ -164,7 +162,7 @@ void fun(vector<pair<int,int> > v, int x, int y, bool (&vis)[55][55],ll sum,stri
 			// return;
 			continue;
 		}
-	}
+	}while(next_permutation(all(v)));
 	
 	
 	
