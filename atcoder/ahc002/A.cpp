@@ -113,12 +113,6 @@ template<typename T> bool cmp2(const pair<T,T> &a, const pair<T,T> &b) {  return
 bool overflow(long double a, long double b){return a * b > 1e18 + 10;}
 const long long N=(long long)(1e5+1);
 const long long inf=(long long)(1e18);
-bool cmp(const pair<ll,string> &a,const pair<ll,string> &b){
-	if(a.ff==b.ff){
-		return (sz(a.ss) < sz(b.ss));
-	}
-	return (a.ff>b.ff);
-}
 int a[55][55];
 int b[55][55];
 map<int,int> m;
@@ -126,7 +120,7 @@ vector<pair<ll,string> > ans;
 pll p;
 void fun(vector<pair<int,int> > v, int x, int y, bool (&vis)[55][55],ll sum,string path){
 	
-	sum+=b[x][y];
+	// sum+=b[x][y];
 	// debug(b[x][y]);
 	vis[x][y]=true;
 	if(m[a[x][y]]==2){
@@ -139,7 +133,9 @@ void fun(vector<pair<int,int> > v, int x, int y, bool (&vis)[55][55],ll sum,stri
 		}
 	}
 	sort(all(v));
-	do{
+	ll cnt=100;
+	while(cnt--){
+		shuffle(all(v),rng);
 		string dir="";
 		for(auto it:v){
 			if(it.ff==0 && it.ss==1){
@@ -159,23 +155,19 @@ void fun(vector<pair<int,int> > v, int x, int y, bool (&vis)[55][55],ll sum,stri
 		for(int i=0;i<4;i++){
 			if(!vis[x+v[i].ff][y+v[i].ss] && b[x+v[i].ff][y+v[i].ss]>=0){
 				f=1;
-				fun(v,x+v[i].ff,y+v[i].ss,vis,sum,path+dir[i]);
+				fun(v,x+v[i].ff,y+v[i].ss,vis,sum+b[x][y],path+dir[i]);
 				break;
 			}
 		}
-		// if(path=="ULLLULDDDLDRDRRURRRRURRRRDRDLLDLDLDLLLDLLDLDRRRRRURRRRRRUUUURUURRUUUURURRDDRDRRUUURDRRDRRDDLDLLLLLLDLDDRRRRURRRRRURRRUURURDRRRDLDRDLDLLLLLDLLLLDLDLLLLDLDLLULLDLDLLLDRDDRRRDRDLLDLLULULLLDDLLULLDLLLULUUUUUULULLUUULUUUUULLLULUULLDLLDDRRRDDRDLLDLDDLDRRDDRRRDLDLLDRDDRDDRRDRRRDDLDLDLLDLLDDLLDDDLDRDDRRRURURRRRURRURUUUURUUURRRURRRRRRURDDLDDRRURRRRDRRURRRUUUUURRDRRRDRDRDRDLDLDLLLULDDLLULLDRDDLDDRRURURRDDRRURRRRURRRDDLLLDLDLDRRRRURRDDRDDLDRRDDLLLLDLLUUULULLLDDDRDLLLLUUUULUULLLULUULLDLLUULLDLLLLLLUUULLDDLDDLDRDLDRRDDLLLLUUUUULLDDDLDLLULDDLDLDDLLULLDDDRRDRRRURUURURURRRRDDLLLDRDRDLDDDRRURRDDRRUURRURRURURRRURDRRURURRDDDRRRURRRRRRRDDLDRDDRRUUURRRRDDRDRR"){
-			// debug(b[x][y],f,v);
-			// for(int i=0;i<4;i++){
-				// cout<<vis[x+v[i].ff][y+v[i].ss]<<" : "<<b[x+v[i].ff][y+v[i].ss]<<" "<<x+v[i].ff<<" "<<y+v[i].ss<<endl;
-				// // debug(vis[][]);
-			// }
-		// }
 		if(!f){
 			ans.pb({sum,path});
 			// return;
 			continue;
 		}
-	}while(next_permutation(all(v)));
+	}
+	
+	
+	
 }
 void solve(int tc)
 {
@@ -215,109 +207,19 @@ void solve(int tc)
 		fun(v,x,y,vis,sum,path);	
 		
 	}while(next_permutation(all(v)));
-	// cout<<sz(ans)<<endl;
-	sort(all(ans),cmp);
-	// reverse(all(ans));
+	
+	sort(all(ans));
+	reverse(all(ans));
 	// for(auto it:ans){
-		// cout<<it.ff<<" "<<it.ss<<endl;
+		// cout<<it.ff<<endl;
+		// // if(it.ff==3455){
+			// // cout<<it.ss<<endl;
+		// // }
 	// }
-	// cout<<ans[0].ff<<" "<<ans[0].ss<<endl;
+	cout<<ans[0].ss<<endl;
 	// cout<<ans[0].ff<<endl;
 	
 	
-	x=p.ff;
-	y=p.ss;
-	bool vis[55][55];
-	mem(vis,-1);
-	for(auto it:ans[0].ss){
-		vis[x][y]=true;
-		if(m[a[x][y]]==2){
-			for(int i=0;i<4;i++){
-				if(a[x+v[i].ff][y+v[i].ss]==a[x][y]){
-					vis[x+v[i].ff][y+v[i].ss]=true;
-					// cout<<x+fx[i]<<" "<<y+fy[i]<<endl;
-					break;
-				}
-			}
-		}
-		if(it=='L'){
-			y--;
-		}
-		if(it=='R'){
-			y++;
-		}
-		if(it=='U'){
-			x--;
-		}
-		if(it=='D'){
-			x++;
-		}
-	}
-	sort(all(v));
-	vector<pair<ll,string> > ans2;
-	p={x,y};
-	do{
-		string dir="";
-		for(auto it:v){
-			if(it.ff==0 && it.ss==1){
-				dir+='R';
-			}
-			if(it.ff==0 && it.ss==-1){
-				dir+='L';
-			}
-			if(it.ff==-1 && it.ss==0){
-				dir+='U';
-			}
-			if(it.ff==1 && it.ss==0){
-				dir+='D';
-			}
-		}
-		// debug(v,dir);
-		x=p.ff;
-		y=p.ss;
-		bool vis2[55][55];
-		mem(vis2,false);
-		for(int i=1;i<=50;i++){
-			for(int j=1;j<=50;j++){
-				vis2[i][j]=vis[i][j];
-			}
-		}
-		ll sum=0;
-		string path="";
-		while(1){
-			sum+=b[x][y];
-			// debug(b[x][y]);
-			vis2[x][y]=true;
-			if(m[a[x][y]]==2){
-				for(int i=0;i<4;i++){
-					if(a[x+v[i].ff][y+v[i].ss]==a[x][y]){
-						vis2[x+v[i].ff][y+v[i].ss]=true;
-						// cout<<x+fx[i]<<" "<<y+fy[i]<<endl;
-						break;
-					}
-				}
-			}
-			int f=0;
-			for(int i=0;i<4;i++){
-				if(!vis2[x+v[i].ff][y+v[i].ss] && b[x+v[i].ff][y+v[i].ss]>=0){
-					f=1;
-					x=x+v[i].ff;
-					y=y+v[i].ss;
-					path+=dir[i];
-					break;
-				}
-			}
-			if(!f){
-				break;
-			}
-		}
-		ans2.pb({sum,path});
-	}while(next_permutation(all(v)));
-	sort(all(ans2),cmp);
-	// for(auto it:ans2){
-		// cout<<it.ff<<" "<<it.ss<<endl;
-	// }
-	cout<<ans[0].ss<<ans2[0].ss;
 }
 int main(){
 	start();
