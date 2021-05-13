@@ -1,4 +1,20 @@
 {
+  "AC22557703": {
+    "contest_id": "abc146",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/abc146/C.cpp",
+    "platform": "AtCoder",
+    "problem_index": "C",
+    "problem_name": "Buy an Integer",
+    "problem_url": "https://atcoder.jp/contests/abc146/tasks/abc146_c",
+    "submission_id": "AC22557703",
+    "submission_url": "https://atcoder.jp/contests/abc146/submissions/22557703",
+    "tags": [
+      "AtCoder",
+      "*300"
+    ],
+    "timestamp": "May/13/2021 17:14"
+  },
   "AC22557746": {
     "contest_id": "code-festival-2016-quala",
     "language": "C++ (GCC 9.2.1)",
