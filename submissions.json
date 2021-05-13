@@ -1,4 +1,20 @@
 {
+  "AC22557746": {
+    "contest_id": "code-festival-2016-quala",
+    "language": "C++ (GCC 9.2.1)",
+    "path": "atcoder/code-festival-2016-quala/B.cpp",
+    "platform": "AtCoder",
+    "problem_index": "B",
+    "problem_name": "Friendly Rabbits",
+    "problem_url": "https://atcoder.jp/contests/code-festival-2016-quala/tasks/codefestival_2016_qualA_b",
+    "submission_id": "AC22557746",
+    "submission_url": "https://atcoder.jp/contests/code-festival-2016-quala/submissions/22557746",
+    "tags": [
+      "AtCoder",
+      "*200"
+    ],
+    "timestamp": "May/13/2021 17:17"
+  },
   "AC22558014": {
     "contest_id": "abc173",
     "language": "C++ (GCC 9.2.1)",
