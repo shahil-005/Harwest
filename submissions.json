@@ -3391,6 +3391,24 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF118230360": {
+    "contest_id": 913,
+    "language": "GNU C++17",
+    "path": "codeforces/913/C.cpp",
+    "platform": "Codeforces",
+    "problem_index": "C",
+    "problem_name": "Party Lemonade",
+    "problem_url": "https://codeforces.com/contest/913/problem/C",
+    "submission_id": "CF118230360",
+    "submission_url": "https://codeforces.com/contest/913/submission/118230360",
+    "tags": [
+      "bitmasks",
+      "dp",
+      "greedy",
+      "*1600"
+    ],
+    "timestamp": "Jun/03/2021 03:19"
+  },
   "CF118231326": {
     "contest_id": 603,
     "language": "GNU C++17",
