@@ -24,20 +24,19 @@ using namespace __gnu_pbds;
 //g++ -std=c++17 -Wshadow -Wall -o "%e" "%f" -g  -D_GLIBCXX_DEBUG
 #define endl                    '\n'
 #define ll 			long long
-#define int 			long long
 #define ld			long double
 #define google(x)		cout<<"Case #"<<x<<": ";
 #define pb                      push_back
 #define pob                     pop_back
 #define all(v)                  v.begin(), v.end()
 #define mem(a,x)                memset(a,x,sizeof(a))
-#define sz(x)       		(int)x.size()
+#define sz(x)       		(ll)x.size()
 #define ff                      first
 #define ss                      second
 #define fix(f,n) 		std::fixed<<std::setprecision(n)<<f
 #define pll 			pair<ll,ll>
 #define pii 			pair<int,int>
-#define MOD      		(int)1000000007
+#define MOD      		1000000007
 #define MOD1   			998244353
 //Time:
 #define debug2(...) fprintf(stderr, __VA_ARGS__), fflush(stderr)
@@ -49,8 +48,8 @@ using namespace __gnu_pbds;
 )
 //debug:
 void __print(int x) {cout << x;}
-// void __print(long x) {cout << x;}
-// void __print(long long x) {cout << x;}
+void __print(long x) {cout << x;}
+void __print(long long x) {cout << x;}
 void __print(unsigned x) {cout << x;}
 void __print(unsigned long x) {cout << x;}
 void __print(unsigned long long x) {cout << x;}
@@ -132,28 +131,92 @@ template<typename T> bool cmp2(const pair<T,T> &a, const pair<T,T> &b) {  return
 bool overflow(long double a, long double b){return a * b > 1e18 + 10;}
 const long long N=(long long)(2e3+5);
 const long long inf=(long long)(1e18);
+struct dsu{
+	int par[N],rank[N];
+	void init(int v){
+		for(int i=1;i<=v;i++){
+			par[i]=i;
+			rank[i]=0;
+		}
+	}
+	
+	int find(int v){			//FIND operation
+		if(v==par[v]){
+			return v;
+		}	
+		return par[v]=find(par[v]);	//Path Compression
+	}
+	
+	void union_(int u,int v){		//UNION by RANK
+		u=find(u);
+		v=find(v);			
+		if(rank[u]>rank[v]){		//u has higher rank
+			par[v]=u;
+		}	
+		else if(rank[u]<rank[v]){	//v has higher rank
+			par[u]=v;
+		}	
+			
+		else{				//Both have same rank and so anyone can be made as parent
+			par[v]=u;
+			rank[u]+=1;		//Increase rank of parent
+		}
+	}
+	
+	vector<pair<int,int>> edges;
+	void edge(int u, int v){
+		edges.push_back({u,v});
+	}
+	bool isCyclic()
+	{
+		for(auto p: edges){
+			int u = find(p.first);	//FIND absolute parent of subset
+			int v = find(p.second);
+			if(u == v){
+				return true;
+			}
+			
+			union_(u,v);		//UNION of 2 sets
+		}
+		return false;
+	}
+};
+dsu C;
 void solve(int tc)
 {
-	// dsu sol : https://codeforces.com/contest/150/submission/118317335
-	
-	//maths sol(edi)
 	int n,m,k;
 	cin>>n>>m>>k;
+	C.init(n);
+	int i=1;
+	while(1){
+		int x=i;
+		int y=i+k-1;
+		if(y>n){
+			break;
+		}
+		int f=1;
+		for(int j=x;j<=(x-1+k/2);j++){
+			int a=j;
+			int b=x+k-(f++);
+			// debug(i,a,b);
+			if(C.find(a)!=C.find(b)){
+				C.union_(a,b);
+			}
+		}
+		i++;
+	}
+	set<int> s;
+	for(i=1;i<=n;i++){
+		C.par[i]=C.find(i);
+		s.insert(C.par[i]);
+		// debug(i,C.par[i]);
+	}
+	// debug(s);
+	cout<<powm((ll)m,sz(s),(ll)MOD);
 	
-	if(k==1 || k>n){	//the chars can be anything
-		cout<<powm(m,n,MOD);
-	}
-	else if(k==n){	//abcdedcba
-		cout<<powm(m,(n+1)/2,MOD);
-	}
-	else if(k&1){	//alternate chars will be same	ababababa
-		cout<<powm(m,(int)2,MOD);
-	}
-	else{	//all chars have to be same : aaaaaaa
-		cout<<m;
-	}
+	//using DSU
 }
-int32_t main(){
+int main(){
 	start();
 	time__("solve"){
 		int t=1;
