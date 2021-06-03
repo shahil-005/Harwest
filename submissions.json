@@ -3391,6 +3391,25 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF118317373": {
+    "contest_id": 151,
+    "language": "GNU C++17",
+    "path": "codeforces/151/D.cpp",
+    "platform": "Codeforces",
+    "problem_index": "D",
+    "problem_name": "Quantity of Strings",
+    "problem_url": "https://codeforces.com/contest/151/problem/D",
+    "submission_id": "CF118317373",
+    "submission_url": "https://codeforces.com/contest/151/submission/118317373",
+    "tags": [
+      "combinatorics",
+      "dsu",
+      "graphs",
+      "math",
+      "*1600"
+    ],
+    "timestamp": "Jun/04/2021 05:28"
+  },
   "CF118317830": {
     "contest_id": 150,
     "language": "GNU C++17",
