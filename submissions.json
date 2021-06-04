@@ -3391,6 +3391,23 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF118458487": {
+    "contest_id": 844,
+    "language": "GNU C++17 (64)",
+    "path": "codeforces/844/C.cpp",
+    "platform": "Codeforces",
+    "problem_index": "C",
+    "problem_name": "Sorting by Subsequences",
+    "problem_url": "https://codeforces.com/contest/844/problem/C",
+    "submission_id": "CF118458487",
+    "submission_url": "https://codeforces.com/contest/844/submission/118458487",
+    "tags": [
+      "dfs and similar",
+      "math",
+      "*1400"
+    ],
+    "timestamp": "Jun/05/2021 02:45"
+  },
   "CF118459703": {
     "contest_id": 60,
     "language": "GNU C++17",
