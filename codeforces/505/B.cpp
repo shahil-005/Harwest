@@ -131,74 +131,35 @@ template<typename T> bool cmp2(const pair<T,T> &a, const pair<T,T> &b) {  return
 bool overflow(long double a, long double b){return a * b > 1e18 + 10;}
 const long long N=(long long)(1e2+5);
 const long long inf=(long long)(1e18);
-struct dsu{
-	int par[N],rank[N];
-	void init(int v){
-		for(int i=1;i<=v;i++){
-			par[i]=i;
-			rank[i]=0;
+int adj[N][N][N];
+int par[N][N];
+int n,m;
+void dfs(int c, int nd, int p){
+	par[c][nd]=p;
+	for(int it=1;it<=n;it++){
+		if(adj[c][nd][it] && !par[c][it]){
+			dfs(c,it,p);
 		}
 	}
-	
-	int find(int v){			//FIND operation
-		if(v==par[v]){
-			return v;
-		}	
-		return par[v]=find(par[v]);	//Path Compression
-	}
-	
-	void union_(int u,int v){		//UNION by RANK
-		u=find(u);
-		v=find(v);	
-		if(u==v){
-			return;
-		}		
-		if(rank[u]>rank[v]){		//u has higher rank
-			par[v]=u;
-		}	
-		else if(rank[u]<rank[v]){	//v has higher rank
-			par[u]=v;
-		}	
-			
-		else{				//Both have same rank and so anyone can be made as parent
-			par[v]=u;
-			rank[u]+=1;		//Increase rank of parent
-		}
-	}
-	
-	vector<pair<int,int>> edges;
-	void edge(int u, int v){
-		edges.push_back({u,v});
-	}
-	bool isCyclic()
-	{
-		for(auto p: edges){
-			int u = find(p.first);	//FIND absolute parent of subset
-			int v = find(p.second);
-			if(u == v){
-				return true;
-			}
-			
-			union_(u,v);		//UNION of 2 sets
-		}
-		return false;
-	}
-};
+}
 void solve(int tc)
 {
-	//dsu approach
-	int n,m;
+	//dfs approach
 	cin>>n>>m;
-	dsu C[N];
-	for(int i=1;i<N;i++){
-		C[i].init(n);
-	}
 	set<int> col;
 	for(int i=1;i<=m;i++){
 		int a,b,c;
 		cin>>a>>b>>c;
+		adj[c][a][b]=1;
+		adj[c][b][a]=1;
 		col.insert(c);
-		C[c].union_(a,b);
+	}
+	for(auto it:col){
+		for(int i=1;i<=n;i++){
+			if(!par[it][i]){
+				dfs(it,i,i);
+			}
+		}
 	}
 	int q;
 	cin>>q;
@@ -207,7 +168,7 @@ void solve(int tc)
 		cin>>x>>y;
 		int ans=0;
 		for(auto it:col){
-			ans+=(C[it].find(x)==C[it].find(y));
+			ans+=(par[it][x]==par[it][y]);
 		}
 		cout<<ans<<endl;
 	}
