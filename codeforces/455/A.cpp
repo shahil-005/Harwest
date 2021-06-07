@@ -143,7 +143,7 @@ ll fun(ll i){
 	if(dp[i]!=-1){
 		return dp[i];
 	}
-	return dp[i]=max(b[i]+fun(i-2),fun(i-1));
+	return dp[i]=max(b[i]+fun(i+2),fun(i+1));
 }
 void solve(int tc)
 {
@@ -158,7 +158,7 @@ void solve(int tc)
 		b[it.ff]=it.ff*it.ss;
 	}
 	mem(dp,-1);
-	cout<<fun(maxn)<<endl;
+	cout<<fun(1)<<endl;
 }
 int main(){
 	start();
