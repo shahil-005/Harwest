@@ -135,9 +135,8 @@ ll n;
 ll a[N];
 ll b[N];
 ll dp[N];
-ll maxn=0;
 ll fun(ll i){
-	if(i>maxn){
+	if(i>1e5){
 		return 0;
 	}
 	if(dp[i]!=-1){
@@ -152,7 +151,6 @@ void solve(int tc)
 	for(ll i=1;i<=n;i++){
 		cin>>a[i];
 		m[a[i]]++;
-		maxn=max(maxn,a[i]);
 	}
 	for(auto it:m){
 		b[it.ff]=it.ff*it.ss;
