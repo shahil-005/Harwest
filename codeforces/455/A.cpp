@@ -148,10 +148,14 @@ ll fun(ll i){
 void solve(int tc)
 {
 	cin>>n;
+	map<ll,ll> m;
 	for(ll i=1;i<=n;i++){
 		cin>>a[i];
-		b[a[i]]+=a[i];
+		m[a[i]]++;
 		maxn=max(maxn,a[i]);
+	}
+	for(auto it:m){
+		b[it.ff]=it.ff*it.ss;
 	}
 	mem(dp,-1);
 	cout<<fun(maxn)<<endl;
