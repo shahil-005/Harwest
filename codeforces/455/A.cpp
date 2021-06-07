@@ -136,6 +136,15 @@ ll a[N];
 ll b[N];
 ll dp[N];
 ll maxn=0;
+ll fun(ll i){
+	if(i>maxn){
+		return 0;
+	}
+	if(dp[i]!=-1){
+		return dp[i];
+	}
+	return dp[i]=max(b[i]+fun(i-2),fun(i-1));
+}
 void solve(int tc)
 {
 	cin>>n;
@@ -144,10 +153,8 @@ void solve(int tc)
 		b[a[i]]+=a[i];
 		maxn=max(maxn,a[i]);
 	}
-	for(int i=1;i<=maxn;i++){
-		dp[i]=max(dp[i-1],dp[i-2]+b[i]);
-	}
-	cout<<dp[maxn]<<endl;
+	mem(dp,-1);
+	cout<<fun(maxn)<<endl;
 }
 int main(){
 	start();
