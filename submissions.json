@@ -3391,6 +3391,23 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF118921794": {
+    "contest_id": 600,
+    "language": "GNU C++17",
+    "path": "codeforces/600/A.cpp",
+    "platform": "Codeforces",
+    "problem_index": "A",
+    "problem_name": "Extract Numbers",
+    "problem_url": "https://codeforces.com/contest/600/problem/A",
+    "submission_id": "CF118921794",
+    "submission_url": "https://codeforces.com/contest/600/submission/118921794",
+    "tags": [
+      "implementation",
+      "strings",
+      "*1600"
+    ],
+    "timestamp": "Jun/10/2021 05:26"
+  },
   "CF118922053": {
     "contest_id": 600,
     "language": "GNU C++17",
