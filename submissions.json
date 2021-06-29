@@ -3391,6 +3391,22 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF120885632": {
+    "contest_id": 1533,
+    "language": "Kotlin 1.4",
+    "path": "codeforces/1533/B.kt",
+    "platform": "Codeforces",
+    "problem_index": "B",
+    "problem_name": "Nearest Point Function",
+    "problem_url": "https://codeforces.com/contest/1533/problem/B",
+    "submission_id": "CF120885632",
+    "submission_url": "https://codeforces.com/contest/1533/submission/120885632",
+    "tags": [
+      "*special problem",
+      "implementation"
+    ],
+    "timestamp": "Jun/29/2021 20:22"
+  },
   "CF124496249": {
     "contest_id": 468,
     "language": "GNU C++17",
