@@ -3391,6 +3391,23 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF127002315": {
+    "contest_id": 722,
+    "language": "GNU C++17",
+    "path": "codeforces/722/C.cpp",
+    "platform": "Codeforces",
+    "problem_index": "C",
+    "problem_name": "Destroying Array",
+    "problem_url": "https://codeforces.com/contest/722/problem/C",
+    "submission_id": "CF127002315",
+    "submission_url": "https://codeforces.com/contest/722/submission/127002315",
+    "tags": [
+      "data structures",
+      "dsu",
+      "*1600"
+    ],
+    "timestamp": "Aug/26/2021 02:19"
+  },
   "CF127618764": {
     "contest_id": 903,
     "language": "GNU C++17",
