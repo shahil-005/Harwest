@@ -135,10 +135,6 @@ void solve(int tc)
 {
 	ll n,k;
 	cin>>n>>k;
-	if(k>=43){
-		cout<<"No"<<endl;
-		return;
-	}
 	set<ll> s;
 	for(ll i=1;i<=k;i++){
 		ll x=n%i;
@@ -151,12 +147,6 @@ void solve(int tc)
 	cout<<"Yes"<<endl;
 	
 	
-	// Edi sol
-	// https://jamboard.google.com/d/1JboJDIthQNoVPjcn6CbYme2MlkM2z_sTXBA8jpaM7YA/viewer?f=0
-	
-	// "LCM(1....n)" growth rate is exponential
-	// after k>42, LCM > inf, so "must condition" not fulfilled, so for k>42, ans always "NO"
-	// For k<=42, check manually
 }
 int main(){
 	start();
