@@ -3391,6 +3391,23 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF127646269": {
+    "contest_id": 922,
+    "language": "GNU C++17",
+    "path": "codeforces/922/C.cpp",
+    "platform": "Codeforces",
+    "problem_index": "C",
+    "problem_name": "Cave Painting",
+    "problem_url": "https://codeforces.com/contest/922/problem/C",
+    "submission_id": "CF127646269",
+    "submission_url": "https://codeforces.com/contest/922/submission/127646269",
+    "tags": [
+      "brute force",
+      "number theory",
+      "*1600"
+    ],
+    "timestamp": "Sep/02/2021 01:47"
+  },
   "CF127647739": {
     "contest_id": 416,
     "language": "GNU C++17",
