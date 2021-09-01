@@ -3391,6 +3391,23 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF127621128": {
+    "contest_id": 903,
+    "language": "GNU C++17",
+    "path": "codeforces/903/B.cpp",
+    "platform": "Codeforces",
+    "problem_index": "B",
+    "problem_name": "The Modcrab",
+    "problem_url": "https://codeforces.com/contest/903/problem/B",
+    "submission_id": "CF127621128",
+    "submission_url": "https://codeforces.com/contest/903/submission/127621128",
+    "tags": [
+      "greedy",
+      "implementation",
+      "*1200"
+    ],
+    "timestamp": "Sep/01/2021 20:43"
+  },
   "CF127622627": {
     "contest_id": 903,
     "language": "GNU C++17",
