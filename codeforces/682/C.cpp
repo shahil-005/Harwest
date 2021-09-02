@@ -136,7 +136,8 @@ vector<pll> adj[N];
 bool vis[N];
 multiset<ll> s;
 ll ans=0;
-void dfs(ll nd,ll cur){
+void dfs(ll nd,ll cur, ll prev){
+	// debug(nd,s,cur,prev);
 	vis[nd]=true;
 	if(!s.empty()){
 		ll x=(*s.rbegin())+cur;
@@ -144,11 +145,15 @@ void dfs(ll nd,ll cur){
 			return;
 		}
 	}
+	
 	ans++;
+	// debug(nd,ans);
 	s.insert(-cur);
+	// debug(nd,s,cur,prev);
+	// line(20);
 	for(auto it:adj[nd]){
 		if(!vis[it.ff]){
-			dfs(it.ff,cur+it.ss);
+			dfs(it.ff,cur+it.ss,it.ss);
 			
 		}
 	}
@@ -167,12 +172,8 @@ void solve(int tc)
 		adj[i+1].pb({x,y});
 		adj[x].pb({i+1,y});
 	}
-	dfs(1,0);
+	dfs(1,0,0);
 	cout<<n-ans<<endl;
-	
-	//Run dfs from node 1 and maintain a set with distances from node to all of its ancestors nodes u
-	//Check the largest element in set, x, if x>a[v], then that v is bad, return from that v only
-	//dont include any of v or its children in the good nodes category
 }
 int main(){
 	start();
