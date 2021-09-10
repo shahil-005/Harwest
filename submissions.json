@@ -3391,6 +3391,24 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF128430382": {
+    "contest_id": 21,
+    "language": "GNU C++17",
+    "path": "codeforces/21/C.cpp",
+    "platform": "Codeforces",
+    "problem_index": "C",
+    "problem_name": "Stripe 2",
+    "problem_url": "https://codeforces.com/contest/21/problem/C",
+    "submission_id": "CF128430382",
+    "submission_url": "https://codeforces.com/contest/21/submission/128430382",
+    "tags": [
+      "binary search",
+      "dp",
+      "sortings",
+      "*2000"
+    ],
+    "timestamp": "Sep/10/2021 20:18"
+  },
   "CF128997700": {
     "contest_id": 486,
     "language": "GNU C++17",
