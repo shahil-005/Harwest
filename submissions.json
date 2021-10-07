@@ -1,0 +1,20 @@
+{
+  "CF131084428": {
+    "contest_id": 778,
+    "language": "GNU C++17",
+    "path": "codeforces/778/A.cpp",
+    "platform": "Codeforces",
+    "problem_index": "A",
+    "problem_name": "String Game",
+    "problem_url": "https://codeforces.com/contest/778/problem/A",
+    "submission_id": "CF131084428",
+    "submission_url": "https://codeforces.com/contest/778/submission/131084428",
+    "tags": [
+      "binary search",
+      "greedy",
+      "strings",
+      "*1700"
+    ],
+    "timestamp": "Oct/07/2021 21:07"
+  }
+}
