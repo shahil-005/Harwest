@@ -3391,6 +3391,21 @@
     ],
     "timestamp": "Sep/04/2021 17:47"
   },
+  "CF131083079": {
+    "contest_id": 1571,
+    "language": "Kotlin 1.4",
+    "path": "codeforces/1571/A.kt",
+    "platform": "Codeforces",
+    "problem_index": "A",
+    "problem_name": "Sequence of Comparisons",
+    "problem_url": "https://codeforces.com/contest/1571/problem/A",
+    "submission_id": "CF131083079",
+    "submission_url": "https://codeforces.com/contest/1571/submission/131083079",
+    "tags": [
+      "*special problem"
+    ],
+    "timestamp": "Oct/07/2021 20:55"
+  },
   "CF131084428": {
     "contest_id": 778,
     "language": "GNU C++17",
